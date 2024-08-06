@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    cedula: {
+    Cedula: {
         type: Number,
         required: true
     },
