@@ -11,10 +11,10 @@ mongoose.connect("mongodb://localhost/jobs")
 
 // Importa los modelos aquí para registrar los esquemas
 import './models/userModel.js';
-import './models/JobListiningModel.js';
+import './models/JobListingModel.js';
 import './models/ApplicationModel.js';
 import './models/ProfessionModel.js';
-import './models/PerfilBuscadorModel.js';
+import './models/JobSeekerModel.js';
 import './models/AddressModel.js';
 import './models/CompanyDetailsModel.js';
 import './models/EducationModel.js';
@@ -27,5 +27,9 @@ const server = new ApolloServer({
 });
 
 // Inicia el servidor Apollo
-const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
-console.log(`Server ready at ${url}`);
+async function startServer() {
+    const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
+    console.log(`Server ready at ${url}`);
+}
+
+startServer();

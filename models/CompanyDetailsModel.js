@@ -1,9 +1,9 @@
-import exp from 'constants';
 import mongoose from 'mongoose';
 
 const companyDetailsSchema = new mongoose.Schema({
-    companyName: String,
-    companyType: String,
+    CompanyDetailsID: { type: Number, required: true },
+    companyName: { type: String, required: true },
+    companyType: { type: String, required: true },
 });
 
 mongoose.model('CompanyDetails', companyDetailsSchema);

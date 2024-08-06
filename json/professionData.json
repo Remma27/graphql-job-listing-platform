@@ -1,0 +1,12 @@
+[
+    {
+        "ProfesionID": 1,
+        "name": "Desarrollador Backend",
+        "description": "Especialista en el desarrollo de aplicaciones backend."
+    },
+    {
+        "ProfesionID": 2,
+        "name": "Diseñador UI/UX",
+        "description": "Experto en diseño de interfaces y experiencia de usuario."
+    }
+]
