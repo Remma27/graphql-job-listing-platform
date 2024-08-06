@@ -1,4 +1,5 @@
 // models/User.js
+import exp from 'constants';
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
@@ -23,19 +24,16 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     gender: String,
-    address: {
-        canton: {
-            type: String,
-            enum: ['Puntarenas', 'Esparza', 'Monte de Oro']
-        },
-        details: String
+    addresId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Address'
     },
-    companyDetails: {
-        companyName: String,
-        companyType: String
-    }
+    companyDetailsId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CompanyDetails'
+    },
 });
 
-const User = mongoose.model.User || mongoose.model('User', userSchema);
+mongoose.model('User', userSchema);
 
-export default User;
+export default mongoose.model('User');

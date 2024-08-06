@@ -27,5 +27,4 @@ const jobSeekerProfileSchema = new mongoose.Schema({
     skills: [String]
 });
 
-const JobSeekerProfile = mongoose.model.JobSeekerProfile || mongoose.model('JobSeekerProfile', jobSeekerProfileSchema);
-export default JobSeekerProfile;
+mongoose.model('JobSeekerProfile', jobSeekerProfileSchema);

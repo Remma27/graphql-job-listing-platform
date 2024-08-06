@@ -10,6 +10,6 @@ const professionSchema = new mongoose.Schema({
     description: String
 });
 
-const Profession = mongoose.model.Profession || mongoose.model('Profession', professionSchema);
+mongoose.model('Profession', professionSchema);
 
-export default Profession;
+export default mongoose.model('Profession');
