@@ -1,58 +1,31 @@
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import express from 'express';
 import mongoose from 'mongoose';
-import { readFileSync } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { typeDefs } from './data/schema_deb.js';
+import resolvers from './data/resolverMongo.js';
 
-// Import your resolvers
-import resolvers from './data/resolvers.js';
+// Conexión a la base de datos MongoDB
+mongoose.connect("mongodb://localhost/jobs")
+    .then(() => console.log("DB connected"))
+    .catch((error) => console.log("DB connection error:", error));
 
-// Import the database seeding function
-import { seedDatabase } from './data/_db.js'; // Adjust the path if needed
+// Importa los modelos aquí para registrar los esquemas
+import './models/userModel.js';
+import './models/JobListiningModel.js';
+import './models/ApplicationModel.js';
+import './models/ProfessionModel.js';
+import './models/PerfilBuscadorModel.js';
+import './models/AddressModel.js';
+import './models/CompanyDetailsModel.js';
+import './models/EducationModel.js';
+import './models/ExperienceModel.js';
 
-// Convert __dirname to work with ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Read the schema file
-const typeDefs = readFileSync(path.join(__dirname, './data/schema_db.graphql'), 'utf8');
-
-async function startServer() {
-    const app = express();
-
-    // Connect to MongoDB
-    await mongoose.connect('mongodb://localhost:27017/job_portal');
-
-    // Seed the database
-    await seedDatabase();
-
-    const server = new ApolloServer({
-        typeDefs,
-        resolvers,
-    });
-
-    await server.start();
-
-    app.use(
-        '/graphql',
-        cors(),
-        bodyParser.json(),
-        expressMiddleware(server, {
-            context: async ({ req }) => ({ token: req.headers.token }),
-        }),
-    );
-
-    const PORT = process.env.PORT || 4000;
-
-    app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}/graphql`);
-    });
-}
-
-startServer().catch((error) => {
-    console.error('Error starting the server:', error);
+// Configura el servidor Apollo
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
 });
+
+// Inicia el servidor Apollo
+const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
+console.log(`Server ready at ${url}`);

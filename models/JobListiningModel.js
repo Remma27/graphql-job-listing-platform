@@ -1,6 +1,6 @@
-// models/JobListing.js
 import mongoose from 'mongoose';
 
+// Define el esquema para JobListing
 const jobListingSchema = new mongoose.Schema({
     employerId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -20,16 +20,28 @@ const jobListingSchema = new mongoose.Schema({
         ref: 'Profession',
         required: true
     },
-    requirements: [String],
+    requirements: {
+        type: [String],
+        default: []
+    },
     salary: {
-        min: Number,
-        max: Number
+        min: {
+            type: Number,
+            required: false
+        },
+        max: {
+            type: Number,
+            required: false
+        }
     },
     postedDate: {
         type: Date,
         default: Date.now
     },
-    expirationDate: Date,
+    expirationDate: {
+        type: Date,
+        required: false
+    },
     status: {
         type: String,
         enum: ['open', 'closed', 'filled'],
@@ -37,5 +49,5 @@ const jobListingSchema = new mongoose.Schema({
     }
 });
 
-const JobListing = mongoose.model.JobListing || mongoose.model('JobListing', jobListingSchema);
-export default JobListing;
+// Registra y exporta el modelo
+mongoose.model('JobListing', jobListingSchema);
