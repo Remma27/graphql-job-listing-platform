@@ -1,135 +1,130 @@
 import User from '../models/userModel.js';
-import Offer from '../models/OfferModel.js'; // Asumo que esto debería ser 'JobListingModel'
+import JobListing from '../models/JobListingModel.js';
 import Application from '../models/ApplicationModel.js';
 import Profession from '../models/ProfessionModel.js';
-import PerfilBuscador from '../models/PerfilBuscadorModel.js';
-import Address from '../models/AddressModel.js';
-import CompanyDetails from '../models/CompanyDetailsModel.js';
+import JobSeeker from '../models/JobSeekerModel.js';
 import Education from '../models/EducationModel.js';
 import Experience from '../models/ExperienceModel.js';
-
+import Address from '../models/AddressModel.js';
+import CompanyDetails from '../models/CompanyDetailsModel.js';
 
 export const resolvers = {
     Query: {
         usuarios: async () => {
             return await User.find().exec();
         },
-        usuario: async (_, { id }) => {
-            return await User.findById(id).exec();
+        usuario: async (_, { UserID }) => {
+            return await User.findOne({ UserID }).exec();
         },
         profesiones: async () => {
             return await Profession.find().exec();
         },
-        profesion: async (_, { id }) => {
-            return await Profession.findById(id).exec();
+        profesion: async (_, { ProfesionID }) => {
+            return await Profession.findOne({ ProfesionID }).exec();
         },
-        perfilesBuscadores: async () => {
-            return await PerfilBuscador.find().exec();
+        jobSeekers: async () => {
+            return await JobSeeker.find().exec();
         },
-        perfilBuscador: async (_, { id }) => {
-            return await PerfilBuscador.findById(id).exec();
+        jobSeeker: async (_, { JobSeekerID }) => {
+            return await JobSeeker.findOne({ JobSeekerID }).exec();
         },
-        ofertas: async () => {
-            return await Offer.find().exec();
+        jobListings: async () => {
+            return await JobListing.find().exec();
         },
-        oferta: async (_, { id }) => {
-            return await Offer.findById(id).exec();
+        jobListing: async (_, { JobListingID }) => {
+            return await JobListing.findOne({ JobListingID }).exec();
+        },
+        experience: async (_, { ExperienceID }) => {
+            return await Experience.findOne({ ExperienceID }).exec();
+        },
+        experiences: async () => {
+            return await Experience.find().exec();
+        },
+        education: async (_, { EducationID }) => {
+            return await Education.findOne({ EducationID }).exec();
+        },
+        educations: async () => {
+            return await Education.find().exec();
+        },
+        companyDetail: async (_, { CompanyDetailsID }) => {
+            return await CompanyDetails.findOne({ CompanyDetailsID }).exec();
+        },
+        companyDetails: async () => {
+            return await CompanyDetails.find().exec();
         },
         aplicaciones: async () => {
             return await Application.find().exec();
         },
-        aplicacion: async (_, { id }) => {
-            return await Application.findById(id).exec();
+        aplicacion: async (_, { AplicacionID }) => {
+            return await Application.findOne({ AplicacionID }).exec();
         },
-    },
-    Usuario: {
-        address: async (usuario) => {
-            return await Address.findById(usuario.addressId).exec();
+        address: async (_, { AddressID }) => {
+            return await Address.findOne({ AddressID }).exec();
         },
-        companyDetails: async (usuario) => {
-            return await CompanyDetails.findById(usuario.companyDetailsId).exec();
-        },
-    },
-    PerfilBuscador: {
-        user: async (perfilBuscador) => {
-            return await User.findById(perfilBuscador.userId).exec();
-        },
-        professions: async (perfilBuscador) => {
-            return await Profession.find({ _id: { $in: perfilBuscador.professionsIds } }).exec();
-        },
-        education: async (perfilBuscador) => {
-            return await Education.find({ _id: { $in: perfilBuscador.educationIds } }).exec();
-        },
-        experience: async (perfilBuscador) => {
-            return await Experience.find({ _id: { $in: perfilBuscador.experienceIds } }).exec();
-        },
-    },
-    Oferta: {
-        employer: async (oferta) => {
-            return await User.findById(oferta.employerId).exec();
-        },
-        profession: async (oferta) => {
-            return await Profession.findById(oferta.professionId).exec();
-        },
-    },
-    Aplicacion: {
-        jobSeeker: async (aplicacion) => {
-            return await User.findById(aplicacion.jobSeekerId).exec();
-        },
-        jobListing: async (aplicacion) => {
-            return await Offer.findById(aplicacion.jobListingId).exec();
+        addresses: async () => {
+            return await Address.find().exec();
         },
     },
     Mutation: {
-        createUsuario: async (_, { input }) => {
-            const newUsuario = new User(input);
-            return await newUsuario.save();
+        createUsuario: async (_, { Cedula, name, email, userType, gender, addressID, companyDetailsID }) => {
+            const newUser = new User({ Cedula, name, email, userType, gender, AddressID: addressID, CompanyDetailsID: companyDetailsID });
+            return await newUser.save();
         },
-        updateUsuario: async (_, { id, input }) => {
-            return await User.findByIdAndUpdate(id, input, { new: true }).exec();
+        updateUsuario: async (_, { UserID, Cedula, name, email, userType, gender, addressID, companyDetailsID }) => {
+            return await User.findOneAndUpdate({ UserID }, { Cedula, name, email, userType, gender, AddressID: addressID, CompanyDetailsID: companyDetailsID }, { new: true }).exec();
         },
-        deleteUsuario: async (_, { id }) => {
-            return await User.findByIdAndDelete(id).exec();
+        deleteUsuario: async (_, { UserID }) => {
+            const user = await User.findOneAndDelete({ UserID }).exec();
+            if (!user) throw new Error('Usuario no encontrado');
+            return user;
         },
-        createProfesion: async (_, { input }) => {
-            const newProfesion = new Profession(input);
-            return await newProfesion.save();
+        createProfesion: async (_, { name, description }) => {
+            const newProfession = new Profession({ name, description });
+            return await newProfession.save();
         },
-        updateProfesion: async (_, { id, input }) => {
-            return await Profession.findByIdAndUpdate(id, input, { new: true }).exec();
+        updateProfesion: async (_, { ProfesionID, name, description }) => {
+            return await Profession.findOneAndUpdate({ ProfesionID }, { name, description }, { new: true }).exec();
         },
-        deleteProfesion: async (_, { id }) => {
-            return await Profession.findByIdAndDelete(id).exec();
+        deleteProfesion: async (_, { ProfesionID }) => {
+            const profession = await Profession.findOneAndDelete({ ProfesionID }).exec();
+            if (!profession) throw new Error('Profesión no encontrada');
+            return profession;
         },
-        createPerfilBuscador: async (_, { input }) => {
-            const newPerfilBuscador = new PerfilBuscador(input);
-            return await newPerfilBuscador.save();
+        createJobSeeker: async (_, { UserID, ProfesionID, EducationID, ExperienceID }) => {
+            const newJobSeeker = new JobSeeker({ UserID, ProfesionID, EducationID, ExperienceID });
+            return await newJobSeeker.save();
         },
-        updatePerfilBuscador: async (_, { id, input }) => {
-            return await PerfilBuscador.findByIdAndUpdate(id, input, { new: true }).exec();
+        updateJobSeeker: async (_, { JobSeekerID, ProfesionID, EducationID, ExperienceID }) => {
+            return await JobSeeker.findOneAndUpdate({ JobSeekerID }, { ProfesionID, EducationID, ExperienceID }, { new: true }).exec();
         },
-        deletePerfilBuscador: async (_, { id }) => {
-            return await PerfilBuscador.findByIdAndDelete(id).exec();
+        deleteJobSeeker: async (_, { JobSeekerID }) => {
+            const jobSeeker = await JobSeeker.findOneAndDelete({ JobSeekerID }).exec();
+            if (!jobSeeker) throw new Error('Buscador de empleo no encontrado');
+            return jobSeeker;
         },
-        createOferta: async (_, { input }) => {
-            const newOferta = new Offer(input);
-            return await newOferta.save();
+        createJobListing: async (_, { UserID, ProfesionID, title, description, requirements, salaryMin, salaryMax, postedDate, expirationDate, status }) => {
+            const newJobListing = new JobListing({ UserID, ProfesionID, title, description, requirements, salaryMin, salaryMax, postedDate, expirationDate, status });
+            return await newJobListing.save();
         },
-        updateOferta: async (_, { id, input }) => {
-            return await Offer.findByIdAndUpdate(id, input, { new: true }).exec();
+        updateJobListing: async (_, { JobListingID, title, description, ProfesionID, requirements, salaryMin, salaryMax, postedDate, expirationDate, status }) => {
+            return await JobListing.findOneAndUpdate({ JobListingID }, { title, description, ProfesionID, requirements, salaryMin, salaryMax, postedDate, expirationDate, status }, { new: true }).exec();
         },
-        deleteOferta: async (_, { id }) => {
-            return await Offer.findByIdAndDelete(id).exec();
+        deleteJobListing: async (_, { JobListingID }) => {
+            const jobListing = await JobListing.findOneAndDelete({ JobListingID }).exec();
+            if (!jobListing) throw new Error('Anuncio de trabajo no encontrado');
+            return jobListing;
         },
-        createAplicacion: async (_, { input }) => {
-            const newAplicacion = new Application(input);
-            return await newAplicacion.save();
+        createAplicacion: async (_, { JobSeekerID, JobListingID, applicationDate, status }) => {
+            const newApplication = new Application({ JobSeekerID, JobListingID, applicationDate, status });
+            return await newApplication.save();
         },
-        updateAplicacion: async (_, { id, input }) => {
-            return await Application.findByIdAndUpdate(id, input, { new: true }).exec();
+        updateAplicacion: async (_, { AplicacionID, applicationDate, status }) => {
+            return await Application.findOneAndUpdate({ AplicacionID }, { applicationDate, status }, { new: true }).exec();
         },
-        deleteAplicacion: async (_, { id }) => {
-            return await Application.findByIdAndDelete(id).exec();
+        deleteAplicacion: async (_, { AplicacionID }) => {
+            const application = await Application.findOneAndDelete({ AplicacionID }).exec();
+            if (!application) throw new Error('Aplicación no encontrada');
+            return application;
         },
     },
 };

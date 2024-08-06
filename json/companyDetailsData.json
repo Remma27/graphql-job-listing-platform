@@ -1,0 +1,12 @@
+[
+    {
+        "CompanyDetailsID": 1,
+        "companyName": "Tech Innovators",
+        "companyType": "IT"
+    },
+    {
+        "CompanyDetailsID": 2,
+        "companyName": "Design Solutions",
+        "companyType": "Design"
+    }
+]

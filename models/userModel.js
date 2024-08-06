@@ -1,12 +1,22 @@
-// models/User.js
-import exp from 'constants';
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    cedula: {
-        type: String,
+    UserID: {
+        type: Number,
         required: true,
         unique: true
+    },
+    CompanyDetailsID: {
+        type: Number,
+        required: true
+    },
+    AddressID: {
+        type: Number,
+        required: true
+    },
+    cedula: {
+        type: Number,
+        required: true
     },
     name: {
         type: String,
@@ -15,22 +25,15 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
-        match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        unique: true
     },
     userType: {
         type: String,
-        enum: ['jobSeeker', 'employer'],
         required: true
     },
-    gender: String,
-    addresId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Address'
-    },
-    companyDetailsId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'CompanyDetails'
+    gender: {
+        type: String,
+        required: true
     },
 });
 

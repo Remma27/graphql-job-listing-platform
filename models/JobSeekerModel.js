@@ -1,30 +1,15 @@
 // models/JobSeekerProfile.js
+import exp from 'constants';
 import mongoose from 'mongoose';
 
 const jobSeekerProfileSchema = new mongoose.Schema({
-    user: {  // Asegúrate de usar el nombre correcto aquí
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-        unique: true
-    },
-    professions: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profession',
-        required: true
-    }],
-    education: [{
-        degree: String,
-        institution: String,
-        year: Number
-    }],
-    experience: [{
-        company: String,
-        position: String,
-        startDate: Date,
-        endDate: Date
-    }],
-    skills: [String]
+    JobSeekerID: { type: Number, required: true },
+    UserID: { type: Number, required: true },
+    ProfesionID: { type: Number, required: true },
+    EducationID: { type: Number, required: true },
+    ExperienceID: { type: Number, required: true },
 });
 
 mongoose.model('JobSeekerProfile', jobSeekerProfileSchema);
+
+export default mongoose.model('JobSeekerProfile');

@@ -1,0 +1,16 @@
+[
+    {
+        "AplicacionID": 1,
+        "JobSeekerID": 1,
+        "JobListingID": 1,
+        "applicationDate": "2024-08-05",
+        "status": "submitted"
+    },
+    {
+        "AplicacionID": 2,
+        "JobSeekerID": 2,
+        "JobListingID": 2,
+        "applicationDate": "2024-08-06",
+        "status": "reviewed"
+    }
+]

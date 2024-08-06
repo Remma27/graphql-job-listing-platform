@@ -1,0 +1,14 @@
+[
+    {
+        "EducationID": 1,
+        "degree": "Bachelor's in Computer Science",
+        "institution": "University of Costa Rica",
+        "year": 2021
+    },
+    {
+        "EducationID": 2,
+        "degree": "Master's in Design",
+        "institution": "Universidad Veritas",
+        "year": 2019
+    }
+]

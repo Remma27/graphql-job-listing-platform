@@ -1,181 +1,193 @@
 export const typeDefs = `#graphql
-type Usuario {
-    id: ID!
-    cedula: String
-    name: String
-    email: String
-    userType: String
-    gender: String
-    address: Address
-    companyDetails: CompanyDetails
-  }
+type CompanyDetails {
+  CompanyDetailsID: Int!
+  companyName: String
+  companyType: String
+}
 
-  type Address {
-    id: ID!
-    canton: String
-    details: String
-  }
+type Address {
+  AddressID: Int!
+  canton: String
+  details: String
+}
 
-  type CompanyDetails {
-    id: ID!
-    companyName: String
-    companyType: String
-  }
+type Experience {
+  ExperienceID: Int!
+  company: String
+  position: String
+  startDate: String
+  endDate: String
+}
 
-  type Profesion {
-    id: ID!
-    name: String
-    description: String
-  }
+type Education {
+  EducationID: Int!
+  degree: String
+  institution: String
+  year: Int
+}
 
-  type PerfilBuscador {
-    id: ID!
-    user: Usuario
-    professions: [Profesion]
-    education: [Education]
-    experience: [Experience]
-  }
+type Profesion {
+  ProfesionID: Int!
+  name: String
+  description: String
+}
 
-  type Education {
-    id: ID!
-    degree: String
-    institution: String
-    year: Int
-  }
+type User {
+  UserID: Int!
+  CompanyDetailsID: Int!
+  AddressID: Int!
+  Cedula: Int!
+  name: String
+  email: String
+  userType: String
+  gender: String
+}
 
-  type Experience {
-    id: ID!
-    company: String
-    position: String
-    startDate: String
-    endDate: String
-  }
+type JobSeeker {
+  JobSeekerID: Int!
+  UserID: Int!
+  ProfesionID: Int!
+  EducationID: Int!
+  ExperienceID: Int!
+}
 
-  type Oferta {
-    id: ID!
-    employer: Usuario
-    title: String
-    description: String
-    profession: Profesion
-    requirements: [String]
-    salary: Salary
-    postedDate: String
-    expirationDate: String
-    status: String
-  }
+type JobListing {
+  JobListingID: Int!
+  UserID: Int!
+  ProfesionID: Int!
+  title: String
+  description: String
+  requirements: [String]
+  salaryMin: Int
+  salaryMax: Int
+  postedDate: String
+  expirationDate: String
+  status: String
+}
 
-  type Salary {
-    min: Int
-    max: Int
-  }
+type Aplicacion {
+  AplicacionID: Int!
+  JobSeekerID: Int!
+  JobListingID: Int!
+  applicationDate: String
+  status: String
+}
 
-  type Aplicacion {
-    id: ID!
-    jobSeeker: Usuario
-    jobListing: Oferta
-    applicationDate: String
-    status: String
-  }
+type Query {
+  usuarios: [User]
+  usuario(UserID: Int!): User
+  profesiones: [Profesion]
+  profesion(ProfesionID: Int!): Profesion
+  jobSeekers: [JobSeeker]
+  jobSeeker(JobSeekerID: Int!): JobSeeker
+  jobListings: [JobListing]
+  jobListing(JobListingID: Int!): JobListing
+  aplicaciones: [Aplicacion]
+  aplicacion(AplicacionID: Int!): Aplicacion
+  experiences: [Experience]
+  experience(ExperienceID: Int!): Experience
+  education(EducationID: Int!): Education
+  educations: [Education]
+  companyDetail(CompanyDetailsID: Int!): CompanyDetails
+  companyDetails: [CompanyDetails]
+  address(AddressID: Int!): Address
+  addresses: [Address]
+}
 
-  type Query {
-    usuarios: [Usuario]
-    usuario(id: ID!): Usuario
-    profesiones: [Profesion]
-    profesion(id: ID!): Profesion
-    perfilesBuscadores: [PerfilBuscador]
-    perfilBuscador(id: ID!): PerfilBuscador
-    ofertas: [Oferta]
-    oferta(id: ID!): Oferta
-    aplicaciones: [Aplicacion]
-    aplicacion(id: ID!): Aplicacion
-  }
-  
-  type Mutation {
+type Mutation {
   createUsuario(
-    cedula: String
+    Cedula: Int!
     name: String
     email: String
     userType: String
     gender: String
-    addressId: ID
-    companyDetailsId: ID
-  ): Usuario
+    addressID: Int
+    companyDetailsID: Int
+  ): User
 
   updateUsuario(
-    id: ID!
-    cedula: String
+    UserID: Int!
+    Cedula: Int!
     name: String
     email: String
     userType: String
     gender: String
-    addressId: ID
-    companyDetailsId: ID
-  ): Usuario
+    addressID: Int
+    companyDetailsID: Int
+  ): User
 
-  deleteUsuario(id: ID!): Usuario
+  deleteUsuario(UserID: Int!): User
 
-  createProfesion(name: String, description: String): Profesion
+  createProfesion(
+    name: String
+    description: String
+  ): Profesion
 
-  updateProfesion(id: ID!, name: String, description: String): Profesion
+  updateProfesion(
+    ProfesionID: Int!
+    name: String
+    description: String
+  ): Profesion
 
-  deleteProfesion(id: ID!): Profesion
+  deleteProfesion(ProfesionID: Int!): Profesion
 
-  createPerfilBuscador(
-    userId: ID!
-    professionsIds: [ID]
-    educationIds: [ID]
-    experienceIds: [ID]
-  ): PerfilBuscador
+  createJobSeeker(
+    UserID: Int!
+    ProfesionID: Int!
+    EducationID: Int!
+    ExperienceID: Int!
+  ): JobSeeker
 
-  updatePerfilBuscador(
-    id: ID!
-    professionsIds: [ID]
-    educationIds: [ID]
-    experienceIds: [ID]
-  ): PerfilBuscador
+  updateJobSeeker(
+    JobSeekerID: Int!
+    ProfesionID: Int
+    EducationID: Int
+    ExperienceID: Int
+  ): JobSeeker
 
-  deletePerfilBuscador(id: ID!): PerfilBuscador
+  deleteJobSeeker(JobSeekerID: Int!): JobSeeker
 
-  createOferta(
-    employerId: ID!
+  createJobListing(
+    UserID: Int!
+    ProfesionID: Int
     title: String
     description: String
-    professionId: ID
     requirements: [String]
     salaryMin: Int
     salaryMax: Int
     postedDate: String
     expirationDate: String
     status: String
-  ): Oferta
+  ): JobListing
 
-  updateOferta(
-    id: ID!
+  updateJobListing(
+    JobListingID: Int!
     title: String
     description: String
-    professionId: ID
+    ProfesionID: Int
     requirements: [String]
     salaryMin: Int
     salaryMax: Int
     postedDate: String
     expirationDate: String
     status: String
-  ): Oferta
+  ): JobListing
 
-  deleteOferta(id: ID!): Oferta
+  deleteJobListing(JobListingID: Int!): JobListing
 
   createAplicacion(
-    jobSeekerId: ID!
-    jobListingId: ID!
+    JobSeekerID: Int!
+    JobListingID: Int!
     applicationDate: String
     status: String
   ): Aplicacion
 
   updateAplicacion(
-    id: ID!
+    AplicacionID: Int!
     applicationDate: String
     status: String
   ): Aplicacion
 
-  deleteAplicacion(id: ID!): Aplicacion
-}`;
+  deleteAplicacion(AplicacionID: Int!): Aplicacion
+}
+`;
