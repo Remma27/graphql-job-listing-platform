@@ -1,0 +1,24 @@
+{
+  "name": "demo_01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "jorge ruiz (york)",
+  "license": "ISC",
+  "description": "First demo of graphQL with apollo server",
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "apollo-server-express": "^3.13.0",
+    "graphql": "^16.9.0",
+    "mongoose": "^8.5.1",
+    "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.6"
+  }
+}
