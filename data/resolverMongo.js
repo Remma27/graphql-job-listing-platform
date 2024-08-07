@@ -247,6 +247,77 @@ export const resolvers = {
                     { originalError: error.message }
                 );
             }
+        },
+        //Imprimir información específica de un profesional (recibido como parámetro), cédula, nombre, profesiones.
+        getProfesionalInfo: async (_, { id_profesional }) => {
+            try {
+                // 1. Buscar todos los registros de profesiones para el profesional
+                const registros = await RegistroProfesionalProfesion.find({ id_profesional }).exec();
+
+                if (!registros.length) {
+                    throw new ApolloError('No se encontraron registros para el profesional.', 'NO_RECORDS_FOUND');
+                }
+
+                // 2. Obtener los IDs de las profesiones
+                const ids_profesion = registros.map(registro => registro.id_profesion);
+
+                // 3. Obtener nombres de las profesiones
+                const profesiones = await Profesion.find({ id_profesion: { $in: ids_profesion } }).exec();
+
+                if (!profesiones.length) {
+                    throw new ApolloError('No se encontraron profesiones asociadas al profesional.', 'NO_PROFESSIONS_FOUND');
+                }
+
+                const nombres_profesiones = profesiones.map(profesion => profesion.nombre);
+
+                // 4. Obtener datos del profesional
+                const profesional = await Profesional.findOne({ id_profesional }).exec();
+
+                if (!profesional) {
+                    throw new ApolloError('Profesional no encontrado.', 'PROFESSIONAL_NOT_FOUND');
+                }
+
+                return {
+                    cedula: profesional.cedula,
+                    nombre: profesional.nombre,
+                    profesiones: nombres_profesiones
+                };
+            } catch (error) {
+                console.error("Error al buscar información del profesional:", error);
+                if (error instanceof ApolloError) {
+                    // Re-lanzar errores de Apollo sin modificarlos
+                    throw error;
+                } else {
+                    // Para errores no manejados, lanzar un error genérico
+                    throw new ApolloError(
+                        'Error interno al buscar información del profesional.',
+                        'INTERNAL_SERVER_ERROR',
+                        { originalError: error.message }
+                    );
+                }
+            }
+        },
+        //Cantidad de profesionales registrados por género
+        cantidadProfesionalesPorGenero: async () => {
+            try {
+                const generoCantidad = await Profesional.aggregate([
+                    { $group: { _id: "$genero", cantidad: { $sum: 1 } } }
+                ]).exec();
+
+                return generoCantidad.map(genero => {
+                    return {
+                        genero: genero._id,
+                        cantidad: genero.cantidad
+                    };
+                });
+            } catch (error) {
+                console.error("Error al obtener cantidad de profesionales por género:", error);
+                throw new ApolloError(
+                    'Error interno al obtener cantidad de profesionales por género.',
+                    'INTERNAL_SERVER_ERROR',
+                    { originalError: error.message }
+                );
+            }
         }
     },
     //Impresión de inventario de plazas o puestos vacantes.

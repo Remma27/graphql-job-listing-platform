@@ -13,7 +13,7 @@ scalar Date
   type Profesional {
     id_profesional: Int
     cedula: String
-    nombre: String!
+    nombre: String
     apellido: String
     direccion: String
     telefono: String
