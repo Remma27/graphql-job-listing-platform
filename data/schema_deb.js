@@ -78,4 +78,14 @@ scalar Date
     registros: [RegistroProfesionalProfesion]
     registro(id_registro_profesional_profesion: Int!): RegistroProfesionalProfesion
   }
+  
+  type Mutation {
+        addEmpresa(id_empresa: Int!, nombre: String!, tipo: String!, direccion: String!, telefono: String!, email: String!): Empresa
+        addProfesional(nombre: String!, email: String!): Profesional
+        addProfesion(nombre: String!): Profesion
+        addExpediente(id_profesional: Int!, descripcion: String!): Expediente
+        addPlazaVacante(id_empresa: Int!, puesto: String!): PlazaVacante
+        addAplicacion(id_profesional: Int!, id_vacante: Int!, fecha: String!): Aplicacion
+        addRegistroProfesionalProfesion(id_profesional: Int!, id_profesion: Int!): RegistroProfesionalProfesion
+  }
 `;
