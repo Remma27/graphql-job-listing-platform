@@ -10,15 +10,14 @@ mongoose.connect("mongodb://localhost/jobs")
     .catch((error) => console.log("DB connection error:", error));
 
 // Importa los modelos aquí para registrar los esquemas
-import './models/userModel.js';
-import './models/JobListingModel.js';
-import './models/ApplicationModel.js';
-import './models/ProfessionModel.js';
-import './models/JobSeekerModel.js';
-import './models/AddressModel.js';
-import './models/CompanyDetailsModel.js';
-import './models/EducationModel.js';
-import './models/ExperienceModel.js';
+import './models/Aplicacion.js'
+import './models/Empresa.js'
+import './models/Expediente.js'
+import './models/PlazaVacante.js'
+import './models/Profesion.js'
+import './models/Profesional.js'
+import './models/RegistroProfesionalProfesion.js'
+
 
 // Configura el servidor Apollo
 const server = new ApolloServer({

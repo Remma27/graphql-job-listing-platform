@@ -1,0 +1,18 @@
+[
+    {
+        "id_vacante": 1,
+        "id_empresa": 1,
+        "titulo_puesto": "Lead Software Engineer",
+        "descripcion": "Lead a team of engineers to develop cutting-edge software solutions.",
+        "fecha_publicacion": "2024-07-01",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 2,
+        "id_empresa": 2,
+        "titulo_puesto": "Data Scientist",
+        "descripcion": "Analyze and interpret complex data to help make data-driven decisions.",
+        "fecha_publicacion": "2024-08-01",
+        "estado": "Open"
+    }
+]

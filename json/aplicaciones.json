@@ -1,0 +1,16 @@
+[
+    {
+        "id_aplicacion": 1,
+        "id_profesional": 1,
+        "id_vacante": 1,
+        "fecha_aplicacion": "2024-07-05",
+        "estado": "Applied"
+    },
+    {
+        "id_aplicacion": 2,
+        "id_profesional": 2,
+        "id_vacante": 2,
+        "fecha_aplicacion": "2024-08-02",
+        "estado": "Reviewed"
+    }
+]

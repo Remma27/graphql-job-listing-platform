@@ -1,193 +1,81 @@
 export const typeDefs = `#graphql
-type CompanyDetails {
-  CompanyDetailsID: Int!
-  companyName: String
-  companyType: String
-}
+scalar Date
 
-type Address {
-  AddressID: Int!
-  canton: String
-  details: String
-}
+  type Empresa {
+    id_empresa: Int!
+    nombre: String!
+    tipo: String!
+    direccion: String!
+    telefono: String!
+    email: String!
+  }
 
-type Experience {
-  ExperienceID: Int!
-  company: String
-  position: String
-  startDate: String
-  endDate: String
-}
+  type Profesional {
+    id_profesional: Int!
+    cedula: String!
+    nombre: String!
+    apellido: String!
+    direccion: String!
+    telefono: String!
+    email: String!
+    fecha_nacimiento: Date!
+  }
 
-type Education {
-  EducationID: Int!
-  degree: String
-  institution: String
-  year: Int
-}
+  type Profesion {
+    id_profesion: Int!
+    nombre: String!
+  }
 
-type Profesion {
-  ProfesionID: Int!
-  name: String
-  description: String
-}
+  type RegistroProfesionalProfesion {
+    id_registro_profesional_profesion: Int!
+    profesional: Profesional
+    profesion: Profesion
+  }
 
-type User {
-  UserID: Int!
-  CompanyDetailsID: Int!
-  AddressID: Int!
-  Cedula: Int!
-  name: String
-  email: String
-  userType: String
-  gender: String
-}
+  type Expediente {
+    id_expediente: Int!
+    profesional: Profesional
+    titulos: [String]
+    experiencia_laboral: [String]
+  }
 
-type JobSeeker {
-  JobSeekerID: Int!
-  UserID: Int!
-  ProfesionID: Int!
-  EducationID: Int!
-  ExperienceID: Int!
-}
+  type PlazaVacante {
+    id_vacante: Int!
+    empresa: Empresa
+    titulo_puesto: String!
+    descripcion: String!
+    fecha_publicacion: Date!
+    estado: String!
+  }
 
-type JobListing {
-  JobListingID: Int!
-  UserID: Int!
-  ProfesionID: Int!
-  title: String
-  description: String
-  requirements: [String]
-  salaryMin: Int
-  salaryMax: Int
-  postedDate: String
-  expirationDate: String
-  status: String
-}
+  type Aplicacion {
+    id_aplicacion: Int!
+    profesional: Profesional
+    vacante: PlazaVacante
+    fecha_aplicacion: Date!
+    estado: String!
+  }
 
-type Aplicacion {
-  AplicacionID: Int!
-  JobSeekerID: Int!
-  JobListingID: Int!
-  applicationDate: String
-  status: String
-}
+  type Query {
+    empresas: [Empresa]
+    empresa(id_empresa: Int!): Empresa
 
-type Query {
-  usuarios: [User]
-  usuario(UserID: Int!): User
-  profesiones: [Profesion]
-  profesion(ProfesionID: Int!): Profesion
-  jobSeekers: [JobSeeker]
-  jobSeeker(JobSeekerID: Int!): JobSeeker
-  jobListings: [JobListing]
-  jobListing(JobListingID: Int!): JobListing
-  aplicaciones: [Aplicacion]
-  aplicacion(AplicacionID: Int!): Aplicacion
-  experiences: [Experience]
-  experience(ExperienceID: Int!): Experience
-  education(EducationID: Int!): Education
-  educations: [Education]
-  companyDetail(CompanyDetailsID: Int!): CompanyDetails
-  companyDetails: [CompanyDetails]
-  address(AddressID: Int!): Address
-  addresses: [Address]
-}
+    profesionales: [Profesional]
+    profesional(id_profesional: Int!): Profesional
 
-type Mutation {
-  createUsuario(
-    Cedula: Int!
-    name: String
-    email: String
-    userType: String
-    gender: String
-    addressID: Int
-    companyDetailsID: Int
-  ): User
+    profesiones: [Profesion]
+    profesion(id_profesion: Int!): Profesion
 
-  updateUsuario(
-    UserID: Int!
-    Cedula: Int!
-    name: String
-    email: String
-    userType: String
-    gender: String
-    addressID: Int
-    companyDetailsID: Int
-  ): User
+    expedientes: [Expediente]
+    expediente(id_expediente: Int!): Expediente
 
-  deleteUsuario(UserID: Int!): User
+    plazasVacantes: [PlazaVacante]
+    plazaVacante(id_vacante: Int!): PlazaVacante
 
-  createProfesion(
-    name: String
-    description: String
-  ): Profesion
+    aplicaciones: [Aplicacion]
+    aplicacion(id_aplicacion: Int!): Aplicacion
 
-  updateProfesion(
-    ProfesionID: Int!
-    name: String
-    description: String
-  ): Profesion
-
-  deleteProfesion(ProfesionID: Int!): Profesion
-
-  createJobSeeker(
-    UserID: Int!
-    ProfesionID: Int!
-    EducationID: Int!
-    ExperienceID: Int!
-  ): JobSeeker
-
-  updateJobSeeker(
-    JobSeekerID: Int!
-    ProfesionID: Int
-    EducationID: Int
-    ExperienceID: Int
-  ): JobSeeker
-
-  deleteJobSeeker(JobSeekerID: Int!): JobSeeker
-
-  createJobListing(
-    UserID: Int!
-    ProfesionID: Int
-    title: String
-    description: String
-    requirements: [String]
-    salaryMin: Int
-    salaryMax: Int
-    postedDate: String
-    expirationDate: String
-    status: String
-  ): JobListing
-
-  updateJobListing(
-    JobListingID: Int!
-    title: String
-    description: String
-    ProfesionID: Int
-    requirements: [String]
-    salaryMin: Int
-    salaryMax: Int
-    postedDate: String
-    expirationDate: String
-    status: String
-  ): JobListing
-
-  deleteJobListing(JobListingID: Int!): JobListing
-
-  createAplicacion(
-    JobSeekerID: Int!
-    JobListingID: Int!
-    applicationDate: String
-    status: String
-  ): Aplicacion
-
-  updateAplicacion(
-    AplicacionID: Int!
-    applicationDate: String
-    status: String
-  ): Aplicacion
-
-  deleteAplicacion(AplicacionID: Int!): Aplicacion
-}
+    registros: [RegistroProfesionalProfesion]
+    registro(id_registro_profesional_profesion: Int!): RegistroProfesionalProfesion
+  }
 `;

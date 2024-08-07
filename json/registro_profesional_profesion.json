@@ -1,0 +1,12 @@
+[
+    {
+        "id_registro_profesional_profesion": 1,
+        "id_profesional": 1,
+        "id_profesion": 1
+    },
+    {
+        "id_registro_profesional_profesion": 2,
+        "id_profesional": 2,
+        "id_profesion": 2
+    }
+]

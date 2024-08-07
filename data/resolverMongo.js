@@ -1,132 +1,182 @@
-import User from '../models/userModel.js';
-import JobListing from '../models/JobListingModel.js';
-import Application from '../models/ApplicationModel.js';
-import Profession from '../models/ProfessionModel.js';
-import JobSeeker from '../models/JobSeekerModel.js';
-import Education from '../models/EducationModel.js';
-import Experience from '../models/ExperienceModel.js';
-import Address from '../models/AddressModel.js';
-import CompanyDetails from '../models/CompanyDetailsModel.js';
+import Aplicacion from '../models/Aplicacion.js';
+import Empresa from '../models/Empresa.js';
+import Expediente from '../models/Expediente.js';
+import PlazaVacante from '../models/PlazaVacante.js';
+import Profesion from '../models/Profesion.js';
+import Profesional from '../models/Profesional.js';
+import RegistroProfesionalProfesion from '../models/RegistroProfesionalProfesion.js';
 
 export const resolvers = {
     Query: {
-        usuarios: async () => {
-            return await User.find().exec();
+        empresas: async () => {
+            try {
+                return await Empresa.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener empresas:", error);
+                return [];
+            }
         },
-        usuario: async (_, { UserID }) => {
-            return await User.findOne({ UserID }).exec();
+        empresa: async (_, { id_empresa }) => {
+            try {
+                return await Empresa.findOne({ id_empresa }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener empresa:", error);
+                return null;
+            }
+        },
+        profesionales: async () => {
+            try {
+                return await Profesional.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener profesionales:", error);
+                return [];
+            }
+        },
+        profesional: async (_, { id_profesional }) => {
+            try {
+                return await Profesional.findOne({ id_profesional }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener profesional:", error);
+                return null;
+            }
         },
         profesiones: async () => {
-            return await Profession.find().exec();
+            try {
+                return await Profesion.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener profesiones:", error);
+                return [];
+            }
         },
-        profesion: async (_, { ProfesionID }) => {
-            return await Profession.findOne({ ProfesionID }).exec();
+        profesion: async (_, { id_profesion }) => {
+            try {
+                return await Profesion.findOne({ id_profesion }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener profesion:", error);
+                return null;
+            }
         },
-        jobSeekers: async () => {
-            return await JobSeeker.find().exec();
+        expedientes: async () => {
+            try {
+                return await Expediente.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener expedientes:", error);
+                return [];
+            }
         },
-        jobSeeker: async (_, { JobSeekerID }) => {
-            return await JobSeeker.findOne({ JobSeekerID }).exec();
+        expediente: async (_, { id_expediente }) => {
+            try {
+                return await Expediente.findOne({ id_expediente }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener expediente:", error);
+                return null;
+            }
         },
-        jobListings: async () => {
-            return await JobListing.find().exec();
+        plazasVacantes: async () => {
+            try {
+                return await PlazaVacante.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener plazas vacantes:", error);
+                return [];
+            }
         },
-        jobListing: async (_, { JobListingID }) => {
-            return await JobListing.findOne({ JobListingID }).exec();
-        },
-        experience: async (_, { ExperienceID }) => {
-            return await Experience.findOne({ ExperienceID }).exec();
-        },
-        experiences: async () => {
-            return await Experience.find().exec();
-        },
-        education: async (_, { EducationID }) => {
-            return await Education.findOne({ EducationID }).exec();
-        },
-        educations: async () => {
-            return await Education.find().exec();
-        },
-        companyDetail: async (_, { CompanyDetailsID }) => {
-            return await CompanyDetails.findOne({ CompanyDetailsID }).exec();
-        },
-        companyDetails: async () => {
-            return await CompanyDetails.find().exec();
+        plazaVacante: async (_, { id_vacante }) => {
+            try {
+                return await PlazaVacante.findOne({ id_vacante }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener plaza vacante:", error);
+                return null;
+            }
         },
         aplicaciones: async () => {
-            return await Application.find().exec();
+            try {
+                return await Aplicacion.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener aplicaciones:", error);
+                return [];
+            }
         },
-        aplicacion: async (_, { AplicacionID }) => {
-            return await Application.findOne({ AplicacionID }).exec();
+        aplicacion: async (_, { id_aplicacion }) => {
+            try {
+                return await Aplicacion.findOne({ id_aplicacion }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener aplicacion:", error);
+                return null;
+            }
         },
-        address: async (_, { AddressID }) => {
-            return await Address.findOne({ AddressID }).exec();
+        registros: async () => {
+            try {
+                return await RegistroProfesionalProfesion.find().exec() || [];
+            } catch (error) {
+                console.error("Error al obtener registros:", error);
+                return [];
+            }
         },
-        addresses: async () => {
-            return await Address.find().exec();
-        },
+        registro: async (_, { id_registro_profesional_profesion }) => {
+            try {
+                return await RegistroProfesionalProfesion.findOne({ id_registro_profesional_profesion }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener registro:", error);
+                return null;
+            }
+        }
     },
-    Mutation: {
-        createUsuario: async (_, { Cedula, name, email, userType, gender, addressID, companyDetailsID }) => {
-            const newUser = new User({ Cedula, name, email, userType, gender, AddressID: addressID, CompanyDetailsID: companyDetailsID });
-            return await newUser.save();
+    RegistroProfesionalProfesion: {
+        profesional: async (registro) => {
+            try {
+                return await Profesional.findOne({ id_profesional: registro.id_profesional }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener profesional en RegistroProfesionalProfesion:", error);
+                return null;
+            }
         },
-        updateUsuario: async (_, { UserID, Cedula, name, email, userType, gender, addressID, companyDetailsID }) => {
-            return await User.findOneAndUpdate({ UserID }, { Cedula, name, email, userType, gender, AddressID: addressID, CompanyDetailsID: companyDetailsID }, { new: true }).exec();
-        },
-        deleteUsuario: async (_, { UserID }) => {
-            const user = await User.findOneAndDelete({ UserID }).exec();
-            if (!user) throw new Error('Usuario no encontrado');
-            return user;
-        },
-        createProfesion: async (_, { name, description }) => {
-            const newProfession = new Profession({ name, description });
-            return await newProfession.save();
-        },
-        updateProfesion: async (_, { ProfesionID, name, description }) => {
-            return await Profession.findOneAndUpdate({ ProfesionID }, { name, description }, { new: true }).exec();
-        },
-        deleteProfesion: async (_, { ProfesionID }) => {
-            const profession = await Profession.findOneAndDelete({ ProfesionID }).exec();
-            if (!profession) throw new Error('Profesión no encontrada');
-            return profession;
-        },
-        createJobSeeker: async (_, { UserID, ProfesionID, EducationID, ExperienceID }) => {
-            const newJobSeeker = new JobSeeker({ UserID, ProfesionID, EducationID, ExperienceID });
-            return await newJobSeeker.save();
-        },
-        updateJobSeeker: async (_, { JobSeekerID, ProfesionID, EducationID, ExperienceID }) => {
-            return await JobSeeker.findOneAndUpdate({ JobSeekerID }, { ProfesionID, EducationID, ExperienceID }, { new: true }).exec();
-        },
-        deleteJobSeeker: async (_, { JobSeekerID }) => {
-            const jobSeeker = await JobSeeker.findOneAndDelete({ JobSeekerID }).exec();
-            if (!jobSeeker) throw new Error('Buscador de empleo no encontrado');
-            return jobSeeker;
-        },
-        createJobListing: async (_, { UserID, ProfesionID, title, description, requirements, salaryMin, salaryMax, postedDate, expirationDate, status }) => {
-            const newJobListing = new JobListing({ UserID, ProfesionID, title, description, requirements, salaryMin, salaryMax, postedDate, expirationDate, status });
-            return await newJobListing.save();
-        },
-        updateJobListing: async (_, { JobListingID, title, description, ProfesionID, requirements, salaryMin, salaryMax, postedDate, expirationDate, status }) => {
-            return await JobListing.findOneAndUpdate({ JobListingID }, { title, description, ProfesionID, requirements, salaryMin, salaryMax, postedDate, expirationDate, status }, { new: true }).exec();
-        },
-        deleteJobListing: async (_, { JobListingID }) => {
-            const jobListing = await JobListing.findOneAndDelete({ JobListingID }).exec();
-            if (!jobListing) throw new Error('Anuncio de trabajo no encontrado');
-            return jobListing;
-        },
-        createAplicacion: async (_, { JobSeekerID, JobListingID, applicationDate, status }) => {
-            const newApplication = new Application({ JobSeekerID, JobListingID, applicationDate, status });
-            return await newApplication.save();
-        },
-        updateAplicacion: async (_, { AplicacionID, applicationDate, status }) => {
-            return await Application.findOneAndUpdate({ AplicacionID }, { applicationDate, status }, { new: true }).exec();
-        },
-        deleteAplicacion: async (_, { AplicacionID }) => {
-            const application = await Application.findOneAndDelete({ AplicacionID }).exec();
-            if (!application) throw new Error('Aplicación no encontrada');
-            return application;
-        },
+        profesion: async (registro) => {
+            try {
+                return await Profesion.findOne({ id_profesion: registro.id_profesion }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener profesion en RegistroProfesionalProfesion:", error);
+                return null;
+            }
+        }
     },
+    Expediente: {
+        profesional: async (expediente) => {
+            try {
+                return await Profesional.findOne({ id_profesional: expediente.id_profesional }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener profesional en Expediente:", error);
+                return null;
+            }
+        }
+    },
+    PlazaVacante: {
+        empresa: async (vacante) => {
+            try {
+                return await Empresa.findOne({ id_empresa: vacante.id_empresa }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener empresa en PlazaVacante:", error);
+                return null;
+            }
+        }
+    },
+    Aplicacion: {
+        profesional: async (aplicacion) => {
+            try {
+                return await Profesional.findOne({ id_profesional: aplicacion.id_profesional }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener profesional en Aplicacion:", error);
+                return null;
+            }
+        },
+        vacante: async (aplicacion) => {
+            try {
+                return await PlazaVacante.findOne({ id_vacante: aplicacion.id_vacante }).exec() || null;
+            } catch (error) {
+                console.error("Error al obtener vacante en Aplicacion:", error);
+                return null;
+            }
+        }
+    }
 };
 
 export default resolvers;

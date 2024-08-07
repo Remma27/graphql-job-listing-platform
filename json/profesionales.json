@@ -1,0 +1,22 @@
+[
+    {
+        "id_profesional": 1,
+        "cedula": "123456789",
+        "nombre": "Ana",
+        "apellido": "García",
+        "direccion": "789 Main St, Hometown, TX",
+        "telefono": "+1-555-1234",
+        "email": "ana.garcia@example.com",
+        "fecha_nacimiento": "1990-05-15"
+    },
+    {
+        "id_profesional": 2,
+        "cedula": "987654321",
+        "nombre": "Luis",
+        "apellido": "Martínez",
+        "direccion": "101 Elm St, Big City, FL",
+        "telefono": "+1-555-5678",
+        "email": "luis.martinez@example.com",
+        "fecha_nacimiento": "1985-12-30"
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "id_expediente": 1,
+        "id_profesional": 1,
+        "titulos": [
+            "Bachelor's in Computer Science",
+            "Master's in Software Engineering"
+        ],
+        "experiencia_laboral": [
+            "Software Developer at Tech Innovators",
+            "Senior Developer at Code Labs"
+        ]
+    },
+    {
+        "id_expediente": 2,
+        "id_profesional": 2,
+        "titulos": [
+            "Bachelor's in Data Science"
+        ],
+        "experiencia_laboral": [
+            "Data Analyst at Health Corp"
+        ]
+    }
+]

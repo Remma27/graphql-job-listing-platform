@@ -1,0 +1,10 @@
+[
+    {
+        "id_profesion": 1,
+        "nombre": "Software Engineer"
+    },
+    {
+        "id_profesion": 2,
+        "nombre": "Data Scientist"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "id_empresa": 1,
+        "nombre": "Tech Innovators",
+        "tipo": "Technology",
+        "direccion": "123 Tech Street, Silicon Valley, CA",
+        "telefono": "+1-123-456-7890",
+        "email": "contact@techinnovators.com"
+    },
+    {
+        "id_empresa": 2,
+        "nombre": "Health Corp",
+        "tipo": "Healthcare",
+        "direccion": "456 Health Ave, Med City, NY",
+        "telefono": "+1-987-654-3210",
+        "email": "info@healthcorp.com"
+    }
+]
