@@ -11,15 +11,16 @@ scalar Date
   }
 
   type Profesional {
-    id_profesional: Int!
-    cedula: String!
+    id_profesional: Int
+    cedula: String
     nombre: String!
-    apellido: String!
-    direccion: String!
-    telefono: String!
-    email: String!
-    fecha_nacimiento: Date!
-    genero: String!
+    apellido: String
+    direccion: String
+    telefono: String
+    email: String
+    fecha_nacimiento: Date
+    genero: String
+    areas: [String!]
   }
 
   type Profesion {
@@ -105,6 +106,9 @@ type GeneroCantidad {
 
     #Cantidad de profesionales registrados por género
     cantidadProfesionalesPorGenero: [GeneroCantidad!]!
+
+    #Nombre de todos los profesionales postulantes para una determinada área, el usuario selecciona el área
+    profesionalesPorArea(area: String!): [Profesional!]! 
   }
   
   type Mutation {

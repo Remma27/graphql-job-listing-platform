@@ -174,98 +174,42 @@ export const resolvers = {
                 }
             }
         },
-        //Imprimir información específica de un profesional (recibido como parámetro), cédula, nombre, profesiones.
-        getProfesionalInfo: async (_, { id_profesional }) => {
+        //Nombre de todos los profesionales postulantes para una determinada área, el usuario selecciona el área
+        profesionalesPorArea: async (_, { area }) => {
             try {
-                // 1. Buscar todos los registros de profesiones para el profesional
-                const registros = await RegistroProfesionalProfesion.find({ id_profesional }).exec();
-
-                if (!registros.length) {
-                    throw new ApolloError('No se encontraron registros para el profesional.', 'NO_RECORDS_FOUND');
+                if (!area || area.trim() === '') {
+                    throw new ApolloError('El área proporcionada no es válida.', 'INVALID_AREA');
                 }
 
-                // 2. Obtener los IDs de las profesiones
-                const ids_profesion = registros.map(registro => registro.id_profesion);
+                const profesionales = await Profesional.find({ areas: area })
+                    .select('nombre') // Solo selecciona el campo nombre
+                    .lean()
+                    .exec();
 
-                // 3. Obtener nombres de las profesiones
-                const profesiones = await Profesion.find({ id_profesion: { $in: ids_profesion } }).exec();
-
-                if (!profesiones.length) {
-                    throw new ApolloError('No se encontraron profesiones asociadas al profesional.', 'NO_PROFESSIONS_FOUND');
+                if (!profesionales.length) {
+                    throw new ApolloError(`No se encontraron profesionales para el área: ${area}.`, 'NO_PROFESSIONALS_FOUND');
                 }
 
-                const nombres_profesiones = profesiones.map(profesion => profesion.nombre);
-
-                // 4. Obtener datos del profesional
-                const profesional = await Profesional.findOne({ id_profesional }).exec();
-
-                if (!profesional) {
-                    throw new ApolloError('Profesional no encontrado.', 'PROFESSIONAL_NOT_FOUND');
-                }
-
-                return {
-                    cedula: profesional.cedula,
-                    nombre: profesional.nombre,
-                    profesiones: nombres_profesiones
-                };
+                return profesionales.map(profesional => {
+                    if (profesional.nombre === null || profesional.nombre === undefined) {
+                        console.warn(`El profesional con ID ${profesional.id_profesional} tiene un nombre nulo.`);
+                        // Puedes optar por devolver un valor por defecto si es necesario
+                        return { nombre: "Nombre no disponible" };
+                    }
+                    return { nombre: profesional.nombre };
+                });
             } catch (error) {
-                console.error("Error al buscar información del profesional:", error);
+                console.error("Error al buscar profesionales por área:", error);
 
                 if (error instanceof ApolloError) {
-                    // Re-lanzar errores de Apollo sin modificarlos
                     throw error;
                 } else {
-                    // Para errores no manejados, lanzar un error genérico
                     throw new ApolloError(
-                        'Error interno al buscar información del profesional.',
+                        'Error interno al buscar profesionales por área.',
                         'INTERNAL_SERVER_ERROR',
                         { originalError: error.message }
                     );
                 }
-            }
-        },
-        //Cantidad de profesionales registrados por género
-        cantidadProfesionalesPorGenero: async () => {
-            try {
-                // Contar la cantidad de profesionales por género
-                const profesionalesPorGenero = await Profesional.aggregate([
-                    { $group: { _id: "$genero", cantidad: { $sum: 1 } } },
-                    { $project: { _id: 0, genero: "$_id", cantidad: 1 } }
-                ]).exec();
-
-                return profesionalesPorGenero;
-            } catch (error) {
-                console.error("Error al obtener cantidad de profesionales por género:", error);
-                throw new ApolloError('Error al obtener cantidad de profesionales por género.', 'INTERNAL_ERROR');
-            }
-        }
-    },
-
-    RegistroProfesionalProfesion: {
-        profesional: async (registro) => {
-            try {
-                return await Profesional.findOne({ id_profesional: registro.id_profesional }).exec() || null;
-            } catch (error) {
-                console.error("Error al obtener profesional en RegistroProfesionalProfesion:", error);
-                return null;
-            }
-        },
-        profesion: async (registro) => {
-            try {
-                return await Profesion.findOne({ id_profesion: registro.id_profesion }).exec() || null;
-            } catch (error) {
-                console.error("Error al obtener profesion en RegistroProfesionalProfesion:", error);
-                return null;
-            }
-        }
-    },
-    Expediente: {
-        profesional: async (expediente) => {
-            try {
-                return await Profesional.findOne({ id_profesional: expediente.id_profesional }).exec() || null;
-            } catch (error) {
-                console.error("Error al obtener profesional en Expediente:", error);
-                return null;
             }
         }
     },

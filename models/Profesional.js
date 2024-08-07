@@ -10,6 +10,7 @@ const ProfesionalSchema = new mongoose.Schema({
     email: { type: String, required: true, maxlength: 255 },
     fecha_nacimiento: { type: Date, required: true },
     genero: { type: String, required: true },
+    areas: { type: [String], required: true }
 });
 
 const Profesional = mongoose.model('Profesional', ProfesionalSchema);
