@@ -62,6 +62,12 @@ scalar Date
     puestos_ofertados: [String!]!
   }
 
+  type ProfesionalInfo {
+  cedula: String!
+  nombre: String!
+  profesiones: [String!]!
+}
+
 
   type Query {
     empresas: [Empresa]
@@ -87,6 +93,9 @@ scalar Date
 
     #Impresión general del empleador con la siguiente información: Cédula, nombre, puestos ofertados.
     getPlazaVacantePorProfesional(id_profesional: Int!): PlazaVacanteInfo
+
+    #Imprimir información específica de un profesional (recibido como parámetro), cédula, nombre, profesiones.
+    getProfesionalInfo(id_profesional: Int!): ProfesionalInfo
   }
   
   type Mutation {
