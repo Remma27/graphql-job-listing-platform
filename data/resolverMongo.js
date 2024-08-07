@@ -211,6 +211,42 @@ export const resolvers = {
                     );
                 }
             }
+        },
+        //Cantidad y porcentaje de profesionales registradas por área.
+        cantidadYPorcentajePorArea: async () => {
+            try {
+                // Contar el total de profesionales
+                const totalProfesionales = await Profesional.countDocuments().exec();
+
+                if (totalProfesionales === 0) {
+                    return []; // Si no hay profesionales, retorna un array vacío
+                }
+
+                // Contar los profesionales por área
+                const profesionalesPorArea = await Profesional.aggregate([
+                    { $unwind: "$areas" },
+                    { $group: { _id: "$areas", cantidad: { $sum: 1 } } }
+                ]).exec();
+
+                // Calcular el porcentaje y formatear la respuesta
+                const result = profesionalesPorArea.map(areaStat => {
+                    const porcentaje = (areaStat.cantidad / totalProfesionales) * 100;
+                    return {
+                        area: areaStat._id,
+                        cantidad: areaStat.cantidad,
+                        porcentaje: parseFloat(porcentaje.toFixed(2)) // Limita a dos decimales
+                    };
+                });
+
+                return result;
+            } catch (error) {
+                console.error("Error al calcular cantidad y porcentaje por área:", error);
+                throw new ApolloError(
+                    'Error interno al calcular cantidad y porcentaje por área.',
+                    'INTERNAL_SERVER_ERROR',
+                    { originalError: error.message }
+                );
+            }
         }
     },
     //Impresión de inventario de plazas o puestos vacantes.

@@ -75,6 +75,12 @@ type GeneroCantidad {
   cantidad: Int!
 }
 
+type AreaStats {
+    area: String!
+    cantidad: Int!
+    porcentaje: Float!
+}
+
   type Query {
     empresas: [Empresa]
     empresa(id_empresa: Int!): Empresa
@@ -109,6 +115,9 @@ type GeneroCantidad {
 
     #Nombre de todos los profesionales postulantes para una determinada área, el usuario selecciona el área
     profesionalesPorArea(area: String!): [Profesional!]! 
+
+    #Cantidad y porcentaje de profesionales registradas por área.
+    cantidadYPorcentajePorArea: [AreaStats!]!
   }
   
   type Mutation {
