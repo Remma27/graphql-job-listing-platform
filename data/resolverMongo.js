@@ -120,8 +120,61 @@ export const resolvers = {
                 console.error("Error al obtener registro:", error);
                 return null;
             }
+        },
+
+        //Impresión general del empleador con la siguiente información: Cédula, nombre, puestos ofertados.
+        getPlazaVacantePorProfesional: async (_, { id_profesional }) => {
+            try {
+                // Buscar todas las aplicaciones del profesional
+                const aplicaciones = await Aplicacion.find({ id_profesional }).exec();
+
+                if (!aplicaciones.length) {
+                    throw new ApolloError('No se encontraron aplicaciones para el profesional.', 'NO_APPLICATIONS_FOUND');
+                }
+
+                // Obtener el profesional
+                const profesional = await Profesional.findOne({ id_profesional }).exec();
+
+                if (!profesional) {
+                    throw new ApolloError('Profesional no encontrado.', 'PROFESSIONAL_NOT_FOUND');
+                }
+
+                // Obtener los IDs de las vacantes
+                const vacanteIds = aplicaciones.map(aplicacion => aplicacion.id_vacante);
+
+                // Buscar las vacantes correspondientes
+                const vacantes = await PlazaVacante.find({ id_vacante: { $in: vacanteIds } }).exec();
+
+                if (!vacantes.length) {
+                    throw new ApolloError('No se encontraron vacantes para las aplicaciones del profesional.', 'NO_VACANCIES_FOUND');
+                }
+
+                // Mapear los puestos ofertados
+                const puestos_ofertados = vacantes.map(vacante => vacante.titulo_puesto);
+
+                return {
+                    cedula: profesional.cedula,
+                    nombre: profesional.nombre,
+                    puestos_ofertados
+                };
+            } catch (error) {
+                console.error("Error al buscar plaza vacante por profesional:", error);
+
+                if (error instanceof ApolloError) {
+                    // Re-lanzar errores de Apollo sin modificarlos
+                    throw error;
+                } else {
+                    // Para errores no manejados, lanzar un error genérico
+                    throw new ApolloError(
+                        'Error interno al buscar plaza vacante por profesional.',
+                        'INTERNAL_SERVER_ERROR',
+                        { originalError: error.message }
+                    );
+                }
+            }
         }
-    },
+    }
+    ,
     RegistroProfesionalProfesion: {
         profesional: async (registro) => {
             try {

@@ -22,16 +22,18 @@ import './models/RegistroProfesionalProfesion.js';
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    formatError: (error) => {
-        // Extraer detalles del error
-        const { message, extensions } = error;
+    formatError: (err) => {
+        console.error("Error details:", err); // Añade esto para ver detalles en la consola
         return {
-            message,
-            code: extensions?.code || 'INTERNAL_ERROR',
-            details: extensions?.details || null
+            message: err.message,
+            code: err.extensions?.code || 'INTERNAL_ERROR',
+            details: err.extensions?.details,
+            stack: err.extensions?.stack || err.stack
         };
-    },
+    }
 });
+
+
 
 // Inicia el servidor Apollo
 async function startServer() {

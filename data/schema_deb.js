@@ -56,6 +56,13 @@ scalar Date
     estado: String!
   }
 
+  type PlazaVacanteInfo {
+    cedula: String!
+    nombre: String!
+    puestos_ofertados: [String!]!
+  }
+
+
   type Query {
     empresas: [Empresa]
     empresa(id_empresa: Int!): Empresa
@@ -77,6 +84,9 @@ scalar Date
 
     registros: [RegistroProfesionalProfesion]
     registro(id_registro_profesional_profesion: Int!): RegistroProfesionalProfesion
+
+    #Impresión general del empleador con la siguiente información: Cédula, nombre, puestos ofertados.
+    getPlazaVacantePorProfesional(id_profesional: Int!): PlazaVacanteInfo
   }
   
   type Mutation {
