@@ -8,7 +8,8 @@ const ProfesionalSchema = new mongoose.Schema({
     direccion: { type: String, required: true, maxlength: 255 },
     telefono: { type: String, required: true, maxlength: 255 },
     email: { type: String, required: true, maxlength: 255 },
-    fecha_nacimiento: { type: Date, required: true }
+    fecha_nacimiento: { type: Date, required: true },
+    genero: { type: String, required: true },
 });
 
 const Profesional = mongoose.model('Profesional', ProfesionalSchema);

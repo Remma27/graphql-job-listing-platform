@@ -73,6 +73,7 @@ export const resolvers = {
                 return null;
             }
         },
+        //Impresión de inventario de plazas o puestos vacantes.
         plazasVacantes: async () => {
             try {
                 return await PlazaVacante.find().exec() || [];
@@ -173,7 +174,7 @@ export const resolvers = {
                 }
             }
         },
-
+        //Imprimir información específica de un profesional (recibido como parámetro), cédula, nombre, profesiones.
         getProfesionalInfo: async (_, { id_profesional }) => {
             try {
                 // 1. Buscar todos los registros de profesiones para el profesional
@@ -222,9 +223,24 @@ export const resolvers = {
                     );
                 }
             }
+        },
+        //Cantidad de profesionales registrados por género
+        cantidadProfesionalesPorGenero: async () => {
+            try {
+                // Contar la cantidad de profesionales por género
+                const profesionalesPorGenero = await Profesional.aggregate([
+                    { $group: { _id: "$genero", cantidad: { $sum: 1 } } },
+                    { $project: { _id: 0, genero: "$_id", cantidad: 1 } }
+                ]).exec();
+
+                return profesionalesPorGenero;
+            } catch (error) {
+                console.error("Error al obtener cantidad de profesionales por género:", error);
+                throw new ApolloError('Error al obtener cantidad de profesionales por género.', 'INTERNAL_ERROR');
+            }
         }
-    }
-    ,
+    },
+
     RegistroProfesionalProfesion: {
         profesional: async (registro) => {
             try {
@@ -253,6 +269,7 @@ export const resolvers = {
             }
         }
     },
+    //Impresión de inventario de plazas o puestos vacantes.
     PlazaVacante: {
         empresa: async (vacante) => {
             try {

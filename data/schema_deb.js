@@ -19,6 +19,7 @@ scalar Date
     telefono: String!
     email: String!
     fecha_nacimiento: Date!
+    genero: String!
   }
 
   type Profesion {
@@ -68,6 +69,10 @@ scalar Date
   profesiones: [String!]!
 }
 
+type GeneroCantidad {
+  genero: String!
+  cantidad: Int!
+}
 
   type Query {
     empresas: [Empresa]
@@ -82,6 +87,7 @@ scalar Date
     expedientes: [Expediente]
     expediente(id_expediente: Int!): Expediente
 
+    #Impresión de inventario de plazas o puestos vacantes.
     plazasVacantes: [PlazaVacante]
     plazaVacante(id_vacante: Int!): PlazaVacante
 
@@ -96,6 +102,9 @@ scalar Date
 
     #Imprimir información específica de un profesional (recibido como parámetro), cédula, nombre, profesiones.
     getProfesionalInfo(id_profesional: Int!): ProfesionalInfo
+
+    #Cantidad de profesionales registrados por género
+    cantidadProfesionalesPorGenero: [GeneroCantidad!]!
   }
   
   type Mutation {
