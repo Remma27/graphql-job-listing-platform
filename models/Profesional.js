@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
 
+/*
+This file sets up a Mongoose schema and model for managing professionals, including defining the 
+structure, relationships, and details of each professional.*/ 
+
 const ProfesionalSchema = new mongoose.Schema({
     id_profesional: { type: Number, required: true, unique: true },
     cedula: { type: String, required: true, maxlength: 20, unique: true },

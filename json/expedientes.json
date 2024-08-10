@@ -20,5 +20,224 @@
         "experiencia_laboral": [
             "Data Analyst at Health Corp"
         ]
-    }
-]
+    },
+        {
+            "id_expediente": 3,
+            "id_profesional": 3,
+            "titulos": [
+                "Bachelor's in Electrical Engineering",
+                "Master's in Robotics"
+            ],
+            "experiencia_laboral": [
+                "Robotics Engineer at Auto Innovations",
+                "Electrical Engineer at Smart Home Tech"
+            ]
+        },
+        {
+            "id_expediente": 4,
+            "id_profesional": 4,
+            "titulos": [
+                "Bachelor's in Mechanical Engineering"
+            ],
+            "experiencia_laboral": [
+                "Mechanical Engineer at Eco Solutions"
+            ]
+        },
+        {
+            "id_expediente": 5,
+            "id_profesional": 5,
+            "titulos": [
+                "Bachelor's in Marketing",
+                "Master's in Digital Marketing"
+            ],
+            "experiencia_laboral": [
+                "Marketing Specialist at Retail World",
+                "Digital Marketing Manager at Media Giants"
+            ]
+        },
+        {
+            "id_expediente": 6,
+            "id_profesional": 6,
+            "titulos": [
+                "Bachelor's in Civil Engineering"
+            ],
+            "experiencia_laboral": [
+                "Project Manager at Construction Co."
+            ]
+        },
+        {
+            "id_expediente": 7,
+            "id_profesional": 7,
+            "titulos": [
+                "Bachelor's in Graphic Design",
+                "Master's in Art Direction"
+            ],
+            "experiencia_laboral": [
+                "Art Director at Artistry Studios",
+                "Graphic Designer at Event Masters"
+            ]
+        },
+        {
+            "id_expediente": 8,
+            "id_profesional": 8,
+            "titulos": [
+                "Bachelor's in Finance",
+                "Master's in Financial Analysis"
+            ],
+            "experiencia_laboral": [
+                "Financial Analyst at FinTech Hub",
+                "Senior Financial Analyst at Energy Dynamics"
+            ]
+        },
+        {
+            "id_expediente": 9,
+            "id_profesional": 9,
+            "titulos": [
+                "Bachelor's in Business Administration"
+            ],
+            "experiencia_laboral": [
+                "Business Consultant at Tech Pioneers"
+            ]
+        },
+        {
+            "id_expediente": 10,
+            "id_profesional": 10,
+            "titulos": [
+                "Bachelor's in International Relations",
+                "Master's in Global Business"
+            ],
+            "experiencia_laboral": [
+                "International Relations Specialist at Travel Ventures",
+                "Business Development Manager at Blockchain Solutions"
+            ]
+        },
+        {
+            "id_expediente": 11,
+            "id_profesional": 11,
+            "titulos": [
+                "Bachelor's in Computer Engineering"
+            ],
+            "experiencia_laboral": [
+                "Systems Engineer at Cyber Defense Systems"
+            ]
+        },
+        {
+            "id_expediente": 12,
+            "id_profesional": 12,
+            "titulos": [
+                "Bachelor's in Health Administration"
+            ],
+            "experiencia_laboral": [
+                "Healthcare Administrator at Health Corp"
+            ]
+        },
+        {
+            "id_expediente": 13,
+            "id_profesional": 13,
+            "titulos": [
+                "Bachelor's in Environmental Science"
+            ],
+            "experiencia_laboral": [
+                "Environmental Consultant at Eco Solutions"
+            ]
+        },
+        {
+            "id_expediente": 14,
+            "id_profesional": 14,
+            "titulos": [
+                "Bachelor's in Information Technology",
+                "Master's in Cybersecurity"
+            ],
+            "experiencia_laboral": [
+                "IT Security Analyst at Cyber Defense Systems",
+                "Network Engineer at Smart Home Tech"
+            ]
+        },
+        {
+            "id_expediente": 15,
+            "id_profesional": 15,
+            "titulos": [
+                "Bachelor's in Software Engineering"
+            ],
+            "experiencia_laboral": [
+                "Software Engineer at Digital Marketing Pros"
+            ]
+        },
+        {
+            "id_expediente": 16,
+            "id_profesional": 16,
+            "titulos": [
+                "Bachelor's in Supply Chain Management"
+            ],
+            "experiencia_laboral": [
+                "Logistics Coordinator at Retail World"
+            ]
+        },
+        {
+            "id_expediente": 17,
+            "id_profesional": 17,
+            "titulos": [
+                "Bachelor's in Biomedical Engineering",
+                "Master's in Biotech Management"
+            ],
+            "experiencia_laboral": [
+                "Biomedical Engineer at BioTech Innovations",
+                "Project Manager at Health Corp"
+            ]
+        },
+        {
+            "id_expediente": 18,
+            "id_profesional": 18,
+            "titulos": [
+                "Bachelor's in Data Engineering"
+            ],
+            "experiencia_laboral": [
+                "Data Engineer at Travel Ventures"
+            ]
+        },
+        {
+            "id_expediente": 19,
+            "id_profesional": 19,
+            "titulos": [
+                "Bachelor's in Mechanical Engineering",
+                "Master's in Systems Engineering"
+            ],
+            "experiencia_laboral": [
+                "Systems Engineer at Auto Innovations",
+                "Mechanical Engineer at Eco Solutions"
+            ]
+        },
+        {
+            "id_expediente": 20,
+            "id_profesional": 20,
+            "titulos": [
+                "Bachelor's in Marketing"
+            ],
+            "experiencia_laboral": [
+                "Marketing Coordinator at Digital Marketing Pros"
+            ]
+        },
+        {
+            "id_expediente": 21,
+            "id_profesional": 21,
+            "titulos": [
+                "Bachelor's in Chemical Engineering"
+            ],
+            "experiencia_laboral": [
+                "Process Engineer at Energy Dynamics"
+            ]
+        },
+        {
+            "id_expediente": 22,
+            "id_profesional": 22,
+            "titulos": [
+                "Bachelor's in Computer Science",
+                "Master's in Machine Learning"
+            ],
+            "experiencia_laboral": [
+                "Machine Learning Engineer at Tech Innovators",
+                "Data Scientist at Blockchain Solutions"
+            ]
+        }
+    ]
+    
