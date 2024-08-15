@@ -8,7 +8,11 @@
         "telefono": "+1-555-1234",
         "email": "ana.garcia@example.com",
         "fecha_nacimiento": "1990-05-15",
-        "genero": "Masculino"
+        "genero": "Masculino",
+        "areas": [
+            "Medicina",
+            "Cirugía"
+        ]
     },
     {
         "id_profesional": 2,
@@ -243,4 +247,3 @@
             "genero": "Masculino"
         }
     ]
-    

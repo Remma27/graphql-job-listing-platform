@@ -28,15 +28,16 @@ scalar Date
   }
  
   type Profesional {
-    id_profesional: Int!
-    cedula: String!
-    nombre: String!
-    apellido: String!
-    direccion: String!
-    telefono: String!
-    email: String!
-    fecha_nacimiento: Date!
-    genero: String!
+    id_profesional: Int
+    cedula: String
+    nombre: String
+    apellido: String
+    direccion: String
+    telefono: String
+    email: String
+    fecha_nacimiento: Date
+    genero: String
+    areas: [String!]
   }
   type UpdateProfesionalResponse {
     profesional: Profesional
@@ -157,6 +158,12 @@ scalar Date
 #Overall, this file serves as a blueprint for the GraphQL API, defining how clients can interact with the 
 #data and what information will be available in responses.
 
+type AreaStats {
+    area: String!
+    cantidad: Int!
+    porcentaje: Float!
+}
+
   type Query {
     empresas: [Empresa]
     empresa(id_empresa: Int!): Empresa
@@ -188,6 +195,12 @@ scalar Date
 
     #Cantidad de profesionales registrados por género
     cantidadProfesionalesPorGenero: [GeneroCantidad!]!
+
+    #Nombre de todos los profesionales postulantes para una determinada área, el usuario selecciona el área
+    profesionalesPorArea(area: String!): [Profesional!]! 
+
+    #Cantidad y porcentaje de profesionales registradas por área.
+    cantidadYPorcentajePorArea: [AreaStats!]!
   }
     
   
