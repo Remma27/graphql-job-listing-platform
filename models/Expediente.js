@@ -5,9 +5,12 @@ defining the structure, relationships, and details of professional titles and wo
  */
 const ExpedienteSchema = new mongoose.Schema({
     id_expediente: { type: Number, required: true, unique: true },
-    id_profesional: { type: Number, required: true, ref: 'Profesional' }, // Relación con Profesional
-    titulos: { type: [String] }, // Varios titulos o ninguno
-    experiencia_laboral: { type: [String] } //Varias experiencias laborales o ninguna
+    // Relationship with Professional
+    id_profesional: { type: Number, required: true, ref: 'Profesional' },
+    // Multiple titles or none
+    titulos: { type: [String] },
+    // Multiple work experiences or none
+    experiencia_laboral: { type: [String] }
 });
 
 const Expediente = mongoose.model('Expediente', ExpedienteSchema);

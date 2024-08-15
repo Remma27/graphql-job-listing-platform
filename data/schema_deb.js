@@ -209,7 +209,7 @@ type AreaStats {
         addEmpresa(id_empresa: Int!, nombre: String!, tipo: String!, direccion: String!, telefono: String!, email: String!): Empresa
         updateEmpresa(id_empresa: Int!,nombre: String,tipo: String,direccion: String,telefono: String,email: String): UpdateEmpresaResponse
         deleteEmpresa(id_empresa: Int!): DeleteEmpresaResponse
-        addProfesional(id_profesional: Int, cedula: String! ,nombre: String!,apellido: String!,direccion: String!,telefono: String!,email: String!,fecha_nacimiento: Date! , genero: String!): Profesional
+        addProfesional(id_profesional: Int, cedula: String! ,nombre: String!,apellido: String!,direccion: String!,telefono: String!,email: String!,fecha_nacimiento: Date! , genero: String!, areas: [String!]): Profesional
         updateProfesional(id_profesional: Int!cedula: String,nombre: String,apellido: String,direccion: String,telefono: String,email: String,fecha_nacimiento: Date,genero: String): UpdateProfesionalResponse
         deleteProfesional(id_profesional: Int!): DeleteProfesionalResponse
         addProfesion(id_profesion: Int!,nombre: String!): Profesion

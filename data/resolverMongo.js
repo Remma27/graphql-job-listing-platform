@@ -33,7 +33,7 @@ export const resolvers = {
       try {
         const empresa = await Empresa.findOne({ id_empresa }).exec();
         if (!empresa) {
-          // Lanzar un error si no se encuentra la empresa
+          // Throw an error if the company is not found
           throw new ApolloError(`La empresa con ID ${id_empresa} no existe.`, 'NOT_FOUND');
         }
         return empresa;
@@ -54,7 +54,7 @@ export const resolvers = {
       try {
         const profesional = await Profesional.findOne({ id_profesional }).exec();
         if (!profesional) {
-          // Lanzar un error si no se encuentra el profesional
+          // Throw an error if the professional is not found
           throw new ApolloError(`El profesional con ID ${id_profesional} no existe.`, 'PROFESIONAL_NOT_FOUND');
         }
         return profesional;
@@ -75,7 +75,7 @@ export const resolvers = {
       try {
         const profesion = await Profesion.findOne({ id_profesion }).exec();
         if (!profesion) {
-          // Lanzar un error si no se encuentra la profesión
+          // Throw an error if the profession is not found
           throw new ApolloError(`La profesión con ID ${id_profesion} no existe.`, 'PROFESION_NOT_FOUND');
         }
         return profesion;
@@ -96,7 +96,7 @@ export const resolvers = {
       try {
         const expediente = await Expediente.findOne({ id_expediente }).exec();
         if (!expediente) {
-          // Lanzar un error si no se encuentra el expediente
+          // Throw an error if the expediente is not found
           throw new ApolloError(`El expediente con ID ${id_expediente} no existe.`, 'EXPEDIENTE_NOT_FOUND');
         }
         return expediente;
@@ -105,7 +105,7 @@ export const resolvers = {
         throw new ApolloError('ID no existente');
       }
     },
-    //Impresión de inventario de plazas o puestos vacantes.
+    // Printing inventory of vacant positions.
     plazasVacantes: async () => {
       try {
         return await PlazaVacante.find().exec() || [];
@@ -118,7 +118,7 @@ export const resolvers = {
       try {
         const plazaVacante = await PlazaVacante.findOne({ id_vacante }).exec();
         if (!plazaVacante) {
-          // Lanzar un error si no se encuentra la plaza vacante
+          // Throw an error if the vacancy is not found
           throw new ApolloError(`La plaza vacante con ID ${id_vacante} no existe.`, 'PLAZA_VACANTE_NOT_FOUND');
         }
         return plazaVacante;
@@ -140,7 +140,7 @@ export const resolvers = {
       try {
         const aplicacion = await Aplicacion.findOne({ id_aplicacion }).exec();
         if (!aplicacion) {
-          // Lanzar un error si no se encuentra la aplicación
+          // Throw an error if the application is not found
           throw new ApolloError(`La aplicación con ID ${id_aplicacion} no existe.`, 'APLICACION_NOT_FOUND');
         }
         return aplicacion;
@@ -161,7 +161,7 @@ export const resolvers = {
       try {
         const registro = await RegistroProfesionalProfesion.findOne({ id_registro_profesional_profesion }).exec();
         if (!registro) {
-          // Lanzar un error si no se encuentra el registro
+          // Throw an error if the record is not found
           throw new ApolloError(`El registro con ID ${id_registro_profesional_profesion} no existe.`, 'REGISTRO_NOT_FOUND');
         }
         return registro;
@@ -171,34 +171,34 @@ export const resolvers = {
       }
     },
 
-    //Impresión general del empleador con la siguiente información: Cédula, nombre, puestos ofertados.
+    // General print of the employer with the following information: ID, name, offered positions.
     getPlazaVacantePorProfesional: async (_, { id_profesional }) => {
       try {
-        // Buscar todas las aplicaciones del profesional
+        // Find all applications of the professional
         const aplicaciones = await Aplicacion.find({ id_profesional }).exec();
 
         if (!aplicaciones.length) {
           throw new ApolloError('No se encontraron aplicaciones para el profesional.', 'NO_APPLICATIONS_FOUND');
         }
 
-        // Obtener el profesional
+        // Get the professional
         const profesional = await Profesional.findOne({ id_profesional }).exec();
 
         if (!profesional) {
           throw new ApolloError('Profesional no encontrado.', 'PROFESSIONAL_NOT_FOUND');
         }
 
-        // Obtener los IDs de las vacantes
+        // Get the IDs of the vacancies
         const vacanteIds = aplicaciones.map(aplicacion => aplicacion.id_vacante);
 
-        // Buscar las vacantes correspondientes
+        // Find the corresponding vacancies
         const vacantes = await PlazaVacante.find({ id_vacante: { $in: vacanteIds } }).exec();
 
         if (!vacantes.length) {
           throw new ApolloError('No se encontraron vacantes para las aplicaciones del profesional.', 'NO_VACANCIES_FOUND');
         }
 
-        // Mapear los puestos ofertados
+        // Map the offered positions
         const puestos_ofertados = vacantes.map(vacante => vacante.titulo_puesto);
 
         return {
@@ -210,10 +210,10 @@ export const resolvers = {
         console.error("Error al buscar plaza vacante por profesional:", error);
 
         if (error instanceof ApolloError) {
-          // Re-lanzar errores de Apollo sin modificarlos
+          // Re-throw Apollo errors without modifying them
           throw error;
         } else {
-          // Para errores no manejados, lanzar un error genérico
+          // For unhandled errors, throw a generic error
           throw new ApolloError(
             'Error interno al buscar plaza vacante por profesional.',
             'INTERNAL_SERVER_ERROR',
@@ -222,7 +222,7 @@ export const resolvers = {
         }
       }
     },
-    //Nombre de todos los profesionales postulantes para una determinada área, el usuario selecciona el área
+    // Get the names of all professionals applying for a specific area, the user selects the area
     profesionalesPorArea: async (_, { area }) => {
       try {
         if (!area || area.trim() === '') {
@@ -238,7 +238,7 @@ export const resolvers = {
         }
 
         return profesionales.map(profesional => ({
-          id_profesional: parseInt(profesional._id.toString(), 10), // Asegúrate de que sea un entero
+          id_profesional: parseInt(profesional._id.toString(), 10),
           nombre: profesional.nombre || "Nombre no disponible",
           cedula: profesional.cedula || null,
           apellido: profesional.apellido || null,
@@ -264,20 +264,20 @@ export const resolvers = {
       }
     },
 
-    //Imprimir información específica de un profesional (recibido como parámetro), cédula, nombre, profesiones.
+    // Print specific information of a professional (received as a parameter), such as cedula, name, professions.
     getProfesionalInfo: async (_, { id_profesional }) => {
       try {
-        // 1. Buscar todos los registros de profesiones para el profesional
+        // 1. Find all profession records for the professional
         const registros = await RegistroProfesionalProfesion.find({ id_profesional }).exec();
 
         if (!registros.length) {
           throw new ApolloError('No se encontraron registros para el profesional.', 'NO_RECORDS_FOUND');
         }
 
-        // 2. Obtener los IDs de las profesiones
+        // 2. Get the IDs of the professions
         const ids_profesion = registros.map(registro => registro.id_profesion);
 
-        // 3. Obtener nombres de las profesiones
+        // 3. Get the names of the professions
         const profesiones = await Profesion.find({ id_profesion: { $in: ids_profesion } }).exec();
 
         if (!profesiones.length) {
@@ -286,7 +286,7 @@ export const resolvers = {
 
         const nombres_profesiones = profesiones.map(profesion => profesion.nombre);
 
-        // 4. Obtener datos del profesional
+        // 4. Get professional data
         const profesional = await Profesional.findOne({ id_profesional }).exec();
 
         if (!profesional) {
@@ -302,10 +302,10 @@ export const resolvers = {
         console.error("Error al buscar información del profesional:", error);
 
         if (error instanceof ApolloError) {
-          // Re-lanzar errores de Apollo sin modificarlos
+          // Re-throw Apollo errors without modifying them
           throw error;
         } else {
-          // Para errores no manejados, lanzar un error genérico
+          // For unhandled errors, throw a generic error
           throw new ApolloError(
             'Error interno al buscar información del profesional.',
             'INTERNAL_SERVER_ERROR',
@@ -314,29 +314,30 @@ export const resolvers = {
         }
       }
     },
-    //Cantidad y porcentaje de profesionales registradas por área.
+    // Count and percentage of professionals registered by area.
     cantidadYPorcentajePorArea: async () => {
       try {
-        // Contar el total de profesionales
+        // Count the total number of professionals
         const totalProfesionales = await Profesional.countDocuments().exec();
 
         if (totalProfesionales === 0) {
-          return []; // Si no hay profesionales, retorna un array vacío
+          return []; // If there are no professionals, return an empty array
         }
 
-        // Contar los profesionales por área
+        // Count professionals by area
         const profesionalesPorArea = await Profesional.aggregate([
           { $unwind: "$areas" },
           { $group: { _id: "$areas", cantidad: { $sum: 1 } } }
         ]).exec();
 
-        // Calcular el porcentaje y formatear la respuesta
+        // Calculate the percentage and format the response
         const result = profesionalesPorArea.map(areaStat => {
           const porcentaje = (areaStat.cantidad / totalProfesionales) * 100;
           return {
             area: areaStat._id,
             cantidad: areaStat.cantidad,
-            porcentaje: parseFloat(porcentaje.toFixed(2)) // Limita a dos decimales
+            // Limit to two decimal places
+            porcentaje: parseFloat(porcentaje.toFixed(2))
           };
         });
 
@@ -350,10 +351,10 @@ export const resolvers = {
         );
       }
     },
-    //Cantidad de profesionales registrados por género
+    // Number of professionals registered by gender
     cantidadProfesionalesPorGenero: async () => {
       try {
-        // Contar la cantidad de profesionales por género
+        // Count the number of professionals by gender
         const profesionalesPorGenero = await Profesional.aggregate([
           { $group: { _id: "$genero", cantidad: { $sum: 1 } } },
           { $project: { _id: 0, genero: "$_id", cantidad: 1 } }
@@ -395,7 +396,7 @@ export const resolvers = {
       }
     }
   },
-  //Impresión de inventario de plazas o puestos vacantes.
+  // Printing inventory of vacant positions.
   PlazaVacante: {
     empresa: async (vacante) => {
       try {
@@ -472,18 +473,18 @@ export const resolvers = {
     },
     updateEmpresa: async (parent, { id_empresa, nombre, tipo, direccion, telefono, email }) => {
       try {
-        // Validación de campos requeridos
+        // Validation of required fields
         if (!id_empresa) {
           throw new ApolloError("El campo id_empresa es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la empresa
+        // Validation of company existence
         const empresaExistente = await Empresa.findOne({ id_empresa }).exec();
         if (!empresaExistente) {
           throw new ApolloError("La empresa con el ID proporcionado no existe.", "EMPRESA_NOT_FOUND");
         }
 
-        // Validación de datos proporcionados (si se proporcionan)
+        // Validation of provided data (if provided)
         const updateData = {};
 
         if (nombre) {
@@ -523,14 +524,14 @@ export const resolvers = {
           updateData.email = email;
         }
 
-        // Actualización de la empresa
+        // Update the company
         const empresaActualizada = await Empresa.findOneAndUpdate({ id_empresa }, updateData, { new: true });
 
         if (!empresaActualizada) {
           throw new ApolloError("Error al actualizar la empresa.", "UPDATE_FAILED");
         }
 
-        // Respuesta con datos actualizados y mensaje
+        // Response with updated data and message
         return {
           empresa: empresaActualizada,
           mensaje: "Empresa actualizada correctamente."
@@ -547,25 +548,25 @@ export const resolvers = {
     },
     deleteEmpresa: async (parent, { id_empresa }) => {
       try {
-        // Validación de campo requerido
+        // Validation of required field
         if (!id_empresa) {
           throw new ApolloError("El campo id_empresa es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la empresa
+        // Validation of company existence
         const empresaExistente = await Empresa.findOne({ id_empresa }).exec();
         if (!empresaExistente) {
           throw new ApolloError("La empresa con el ID proporcionado no existe.", "EMPRESA_NOT_FOUND");
         }
 
-        // Eliminar la empresa
+        // Delete the company
         const empresaEliminada = await Empresa.findOneAndDelete({ id_empresa });
 
         if (!empresaEliminada) {
           throw new ApolloError("Error al eliminar la empresa.", "DELETE_FAILED");
         }
 
-        // Respuesta con la empresa eliminada y el mensaje
+        // Response with the deleted company and the message
         return {
           empresa: empresaEliminada,
           message: "Empresa eliminada correctamente."
@@ -580,19 +581,19 @@ export const resolvers = {
         }
       }
     },
-    addProfesional: async (_, { id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero }) => {
+    addProfesional: async (_, { id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero, areas }) => {
       try {
-        // Validaciones
-        if (!id_profesional || !cedula || !nombre || !apellido || !direccion || !telefono || !email || !fecha_nacimiento || !genero) {
+        // Required field validations
+        if (!id_profesional || !cedula || !nombre || !apellido || !direccion || !telefono || !email || !fecha_nacimiento || !genero || !areas) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
 
-        // Validación de tipo de datos
-        if (typeof id_profesional !== 'number' || typeof cedula !== 'string' || typeof nombre !== 'string' || typeof apellido !== 'string' || typeof direccion !== 'string' || typeof telefono !== 'string' || typeof email !== 'string' || typeof fecha_nacimiento !== 'string' || typeof genero !== 'string') {
+        // Data type validation
+        if (typeof id_profesional !== 'number' || typeof cedula !== 'string' || typeof nombre !== 'string' || typeof apellido !== 'string' || typeof direccion !== 'string' || typeof telefono !== 'string' || typeof email !== 'string' || typeof fecha_nacimiento !== 'string' || typeof genero !== 'string' || !Array.isArray(areas) || !areas.every(area => typeof area === 'string')) {
           throw new ApolloError("Tipos de datos no válidos.", "INVALID_TYPE");
         }
 
-        // Validación de longitud
+        // Length validation
         if (nombre.length > 100) {
           throw new ApolloError("El nombre no puede tener más de 100 caracteres.", "NAME_TOO_LONG");
         }
@@ -605,37 +606,41 @@ export const resolvers = {
           throw new ApolloError("La dirección no puede tener más de 255 caracteres.", "DIRECCION_TOO_LONG");
         }
 
-        // Validación de cédula
+        // Validation of ID number
         if (cedula.length < 7 || cedula.length > 15) {
           throw new ApolloError("La cédula debe tener entre 7 y 15 caracteres.", "CEDULA_LENGTH");
         }
 
-        // Validación de formato de teléfono
+        // Phone format validation
         const telefonoRegex = /^\d{8}$/;
         if (!telefonoRegex.test(telefono)) {
           throw new ApolloError("El formato del teléfono no es válido. Debe tener 8 dígitos.", "INVALID_PHONE_FORMAT");
         }
 
-        // Validación de formato de email
+        // Email format validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
           throw new ApolloError("El formato del email no es válido.", "INVALID_EMAIL_FORMAT");
         }
 
-        // Validación de formato de fecha
-        // Validación de formato de fecha
+        // Date format validation
         const fecha = new Date(fecha_nacimiento);
         if (isNaN(fecha.getTime()) || fecha_nacimiento !== fecha.toISOString().split('T')[0]) {
           throw new ApolloError("El formato de la fecha de nacimiento no es válido. Debe ser una fecha completa en formato YYYY-MM-DD.", "INVALID_DATE_FORMAT");
         }
 
-        // Validación de género
+        // Gender validation
         const validGeneros = ["masculino", "femenino", "otro"];
         if (!validGeneros.includes(genero.toLowerCase())) {
           throw new ApolloError("El género no es válido. Debe ser masculino, femenino u otro.", "INVALID_GENDER");
         }
 
-        // Validación de existencia en la base de datos
+        // Validation of areas
+        if (areas.length === 0) {
+          throw new ApolloError("El campo 'areas' no puede estar vacío.", "AREAS_EMPTY");
+        }
+
+        // Validation of existence in the database
         const idExistente = await Profesional.findOne({ id_profesional }).exec();
         if (idExistente) {
           throw new ApolloError("Ya existe un profesional con el mismo ID.", "DUPLICATE_ID");
@@ -646,8 +651,8 @@ export const resolvers = {
           throw new ApolloError("Ya existe un profesional con el mismo email.", "DUPLICATE_EMAIL");
         }
 
-        // Crear y guardar nuevo profesional
-        const nuevoProfesional = new Profesional({ id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero });
+        // Create and save new professional
+        const nuevoProfesional = new Profesional({ id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero, areas });
         await nuevoProfesional.save();
 
         return nuevoProfesional;
@@ -660,20 +665,20 @@ export const resolvers = {
         }
       }
     },
-    updateProfesional: async (parent, { id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero }) => {
+    updateProfesional: async (parent, { id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero, areas }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_profesional) {
           throw new ApolloError("El campo id_profesional es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia del profesional
+        // Validation of professional existence
         const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
         if (!profesionalExistente) {
           throw new ApolloError("El profesional con el ID proporcionado no existe.", "PROFESIONAL_NOT_FOUND");
         }
 
-        // Validación de datos proporcionados (si se proporcionan)
+        // Validation of provided data (if provided)
         const updateData = {};
 
         if (cedula) {
@@ -734,14 +739,25 @@ export const resolvers = {
           updateData.genero = genero;
         }
 
-        // Actualización del profesional
+        if (areas) {
+          // Validation of areas
+          if (!Array.isArray(areas) || !areas.every(area => typeof area === 'string')) {
+            throw new ApolloError("El campo 'areas' debe ser un array de cadenas de texto.", "INVALID_AREAS");
+          }
+          if (areas.length === 0) {
+            throw new ApolloError("El campo 'areas' no puede estar vacío.", "AREAS_EMPTY");
+          }
+          updateData.areas = areas;
+        }
+
+        // Update the professional
         const profesionalActualizado = await Profesional.findOneAndUpdate({ id_profesional }, updateData, { new: true });
 
         if (!profesionalActualizado) {
           throw new ApolloError("Error al actualizar el profesional.", "UPDATE_FAILED");
         }
 
-        // Respuesta con el profesional actualizado y el mensaje
+        // Response with the updated professional and the message
         return {
           profesional: profesionalActualizado,
           message: "Profesional actualizado correctamente."
@@ -758,25 +774,25 @@ export const resolvers = {
     },
     deleteProfesional: async (parent, { id_profesional }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_profesional) {
           throw new ApolloError("El campo id_profesional es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia del profesional
+        // Validation of professional existence
         const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
         if (!profesionalExistente) {
           throw new ApolloError("El profesional con el ID proporcionado no existe.", "PROFESIONAL_NOT_FOUND");
         }
 
-        // Eliminar el profesional
+        // Delete the professional
         const profesionalEliminado = await Profesional.findOneAndDelete({ id_profesional });
 
         if (!profesionalEliminado) {
           throw new ApolloError("Error al eliminar el profesional.", "DELETE_FAILED");
         }
 
-        // Respuesta con el profesional eliminado y el mensaje
+        // Response with the deleted professional and the message
         return {
           profesional: profesionalEliminado,
           message: "Profesional eliminado correctamente."
@@ -793,22 +809,22 @@ export const resolvers = {
     },
     addProfesion: async (_, { id_profesion, nombre }) => {
       try {
-        // Validaciones
+        // Validations
         if (!id_profesion || !nombre) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
 
-        // Validación de tipo de datos
+        // Data type validation
         if (typeof id_profesion !== 'number' || typeof nombre !== 'string') {
           throw new ApolloError("Tipos de datos no válidos.", "INVALID_TYPE");
         }
 
-        // Validación de longitud del nombre
+        // Name length validation
         if (nombre.length > 100) {
           throw new ApolloError("El nombre no puede tener más de 100 caracteres.", "NAME_TOO_LONG");
         }
 
-        // Validación de existencia en la base de datos
+        // Validation of existence in the database
         const idExistente = await Profesion.findOne({ id_profesion }).exec();
         if (idExistente) {
           throw new ApolloError("Ya existe una profesión con el mismo ID.", "DUPLICATE_ID");
@@ -819,7 +835,7 @@ export const resolvers = {
           throw new ApolloError("Ya existe una profesión con el mismo nombre.", "DUPLICATE_NAME");
         }
 
-        // Crear y guardar nueva profesión
+        // Create and save new profession
         const nuevaProfesion = new Profesion({ id_profesion, nombre });
         await nuevaProfesion.save();
 
@@ -835,18 +851,18 @@ export const resolvers = {
     },
     updateProfesion: async (parent, { id_profesion, nombre }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_profesion) {
           throw new ApolloError("El campo id_profesion es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la profesión
+        // Validation of profession existence
         const profesionExistente = await Profesion.findOne({ id_profesion }).exec();
         if (!profesionExistente) {
           throw new ApolloError("La profesión con el ID proporcionado no existe.", "PROFESION_NOT_FOUND");
         }
 
-        // Validación de datos proporcionados (si se proporcionan)
+        // Validation of provided data (if provided)
         const updateData = {};
 
         if (nombre) {
@@ -856,14 +872,14 @@ export const resolvers = {
           updateData.nombre = nombre;
         }
 
-        // Actualización de la profesión
+        // Update the profession
         const profesionActualizada = await Profesion.findOneAndUpdate({ id_profesion }, updateData, { new: true });
 
         if (!profesionActualizada) {
           throw new ApolloError("Error al actualizar la profesión.", "UPDATE_FAILED");
         }
 
-        // Respuesta con la profesión actualizada y el mensaje
+        // Response with the updated profession and the message
         return {
           profesion: profesionActualizada,
           message: "Profesión actualizada correctamente."
@@ -880,25 +896,25 @@ export const resolvers = {
     },
     deleteProfesion: async (parent, { id_profesion }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_profesion) {
           throw new ApolloError("El campo id_profesion es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la profesión
+        // Validation of profession existence
         const profesionExistente = await Profesion.findOne({ id_profesion }).exec();
         if (!profesionExistente) {
           throw new ApolloError("La profesión con el ID proporcionado no existe.", "PROFESION_NOT_FOUND");
         }
 
-        // Eliminar la profesión
+        // Delete the profession
         const profesionEliminada = await Profesion.findOneAndDelete({ id_profesion });
 
         if (!profesionEliminada) {
           throw new ApolloError("Error al eliminar la profesión.", "DELETE_FAILED");
         }
 
-        // Respuesta con el mensaje de éxito
+        // Response with success message
         return {
           message: "Profesión eliminada correctamente."
         };
@@ -914,7 +930,7 @@ export const resolvers = {
     },
     addExpediente: async (_, { id_expediente, id_profesional, titulos, experiencia_laboral }) => {
       try {
-        // Validaciones
+        // Validations
         if (!id_expediente || !id_profesional || !Array.isArray(titulos) || !Array.isArray(experiencia_laboral)) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
@@ -923,7 +939,7 @@ export const resolvers = {
           throw new ApolloError("Los campos id_expediente e id_profesional deben ser números.", "INVALID_TYPE");
         }
 
-        // Verificación de longitud
+        // Length verification
         titulos.forEach(titulo => {
           if (typeof titulo !== 'string' || titulo.length > 255) {
             throw new ApolloError("Cada título debe ser una cadena de texto con un máximo de 255 caracteres.", "TITLE_TOO_LONG");
@@ -936,19 +952,19 @@ export const resolvers = {
           }
         });
 
-        // Verificación de existencia del profesional
+        // Check if the professional exists
         const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
         if (!profesionalExistente) {
           throw new ApolloError("El profesional con el ID especificado no existe.", "PROFESIONAL_NOT_FOUND");
         }
 
-        // Verificación de existencia del expediente
+        // Check if the expediente already exists
         const expedienteExistente = await Expediente.findOne({ id_expediente }).exec();
         if (expedienteExistente) {
           throw new ApolloError("Ya existe un expediente con el mismo ID.", "DUPLICATE_ID");
         }
 
-        // Crear y guardar nuevo expediente
+        // Create and save new expediente
         const nuevoExpediente = new Expediente({
           id_expediente,
           id_profesional,
@@ -969,18 +985,18 @@ export const resolvers = {
     },
     updateExpediente: async (parent, { id_expediente, id_profesional, titulos, experiencia_laboral }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_expediente) {
           throw new ApolloError("El campo id_expediente es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia del expediente
+        // Validation of the existence of the expediente
         const expedienteExistente = await Expediente.findOne({ id_expediente }).exec();
         if (!expedienteExistente) {
           throw new ApolloError("El expediente con el ID proporcionado no existe.", "EXPEDIENTE_NOT_FOUND");
         }
 
-        // Validación de existencia del profesional si se proporciona
+        // Validation of professional existence if provided
         if (id_profesional) {
           const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
           if (!profesionalExistente) {
@@ -988,7 +1004,7 @@ export const resolvers = {
           }
         }
 
-        // Actualización de los datos del expediente
+        // Update the data of the expediente
         const updateData = {};
 
         if (id_profesional) {
@@ -1029,18 +1045,18 @@ export const resolvers = {
     },
     deleteExpediente: async (parent, { id_expediente }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_expediente) {
           throw new ApolloError("El campo id_expediente es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia del expediente
+        // Validation of the existence of the expediente
         const expedienteExistente = await Expediente.findOne({ id_expediente }).exec();
         if (!expedienteExistente) {
           throw new ApolloError("El expediente con el ID proporcionado no existe.", "EXPEDIENTE_NOT_FOUND");
         }
 
-        // Eliminar el expediente
+        // Delete the expediente
         const expedienteEliminado = await Expediente.findOneAndDelete({ id_expediente });
 
         if (!expedienteEliminado) {
@@ -1063,7 +1079,7 @@ export const resolvers = {
     },
     addPlazaVacante: async (_, { id_vacante, id_empresa, titulo_puesto, descripcion, fecha_publicacion, estado }) => {
       try {
-        // Validaciones
+        // Validations
         if (!id_vacante || !id_empresa || !titulo_puesto || !descripcion || !fecha_publicacion || !estado) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
@@ -1089,26 +1105,26 @@ export const resolvers = {
         }
 
 
-        // Validación de formato de fecha
+        // Date format validation
         const fecha = new Date(fecha_publicacion);
         if (isNaN(fecha.getTime()) || fecha_publicacion !== fecha.toISOString().split('T')[0]) {
           throw new ApolloError("El formato de la fecha de publicación no es válido. Debe ser una fecha completa en formato YYYY-MM-DD.", "INVALID_DATE_FORMAT");
         }
 
 
-        // Verificación de existencia de la empresa
+        // Check if the company exists
         const empresaExistente = await Empresa.findOne({ id_empresa }).exec();
         if (!empresaExistente) {
           throw new ApolloError("La empresa con el ID especificado no existe.", "EMPRESA_NOT_FOUND");
         }
 
-        // Verificación de existencia de la plaza vacante
+        // Check if the vacancy exists
         const plazaVacanteExistente = await PlazaVacante.findOne({ id_vacante }).exec();
         if (plazaVacanteExistente) {
           throw new ApolloError("Ya existe una plaza vacante con el mismo ID.", "DUPLICATE_ID");
         }
 
-        // Crear y guardar nueva plaza vacante
+        // Create and save new job vacancy
         const nuevaPlazaVacante = new PlazaVacante({
           id_vacante,
           id_empresa,
@@ -1131,18 +1147,18 @@ export const resolvers = {
     },
     updatePlazaVacante: async (parent, { id_vacante, id_empresa, titulo_puesto, descripcion, fecha_publicacion, estado }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_vacante) {
           throw new ApolloError("El campo id_vacante es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la vacante
+        // Validation of vacancy existence
         const plazaVacanteExistente = await PlazaVacante.findOne({ id_vacante }).exec();
         if (!plazaVacanteExistente) {
           throw new ApolloError("La plaza vacante con el ID proporcionado no existe.", "PLAZA_VACANTE_NOT_FOUND");
         }
 
-        // Validación de formato de fecha
+        // Date format validation
         if (fecha_publicacion) {
           const fecha = new Date(fecha_publicacion);
           if (isNaN(fecha.getTime()) || fecha_publicacion !== fecha.toISOString().split('T')[0]) {
@@ -1150,7 +1166,7 @@ export const resolvers = {
           }
         }
 
-        // Validación de datos proporcionados (si se proporcionan)
+        // Validation of provided data (if provided)
         const updateData = {};
 
         if (id_empresa) {
@@ -1187,7 +1203,7 @@ export const resolvers = {
           updateData.estado = estado;
         }
 
-        // Actualización de la vacante
+        // Update the vacancy
         const plazaVacanteActualizada = await PlazaVacante.findOneAndUpdate({ id_vacante }, updateData, { new: true });
 
         if (!plazaVacanteActualizada) {
@@ -1210,18 +1226,18 @@ export const resolvers = {
     },
     deletePlazaVacante: async (parent, { id_vacante }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_vacante) {
           throw new ApolloError("El campo id_vacante es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la vacante
+        // Validation of vacancy existence
         const plazaVacanteExistente = await PlazaVacante.findOne({ id_vacante }).exec();
         if (!plazaVacanteExistente) {
           throw new ApolloError("La plaza vacante con el ID proporcionado no existe.", "PLAZA_VACANTE_NOT_FOUND");
         }
 
-        // Eliminar la plaza vacante
+        // Delete the job vacancy
         const plazaVacanteEliminada = await PlazaVacante.findOneAndDelete({ id_vacante });
 
         if (!plazaVacanteEliminada) {
@@ -1243,29 +1259,29 @@ export const resolvers = {
     },
     addAplicacion: async (_, { id_aplicacion, id_profesional, id_vacante, fecha_aplicacion, estado }) => {
       try {
-        // Validaciones
+        // Validations
         if (!id_aplicacion || !id_profesional || !id_vacante || !fecha_aplicacion || !estado) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
 
-        // Validación de tipo de datos
+        // Data type validation
         if (typeof id_aplicacion !== 'number' || typeof id_profesional !== 'number' || typeof id_vacante !== 'number' || typeof fecha_aplicacion !== 'string' || typeof estado !== 'string') {
           throw new ApolloError("Tipos de datos no válidos.", "INVALID_TYPE");
         }
 
-        // Validación de formato de fecha
+        // Date format validation
         const fecha = new Date(fecha_aplicacion);
         if (isNaN(fecha.getTime()) || fecha_aplicacion !== fecha.toISOString().split('T')[0]) {
           throw new ApolloError("El formato de la fecha de aplicación no es válido. Debe ser una fecha completa en formato YYYY-MM-DD.", "INVALID_DATE_FORMAT");
         }
 
-        // Validación de estado
+        // State validation
         const validEstados = ["Pendiente", "En revisión", "Aceptada", "Rechazada"];
         if (!validEstados.includes(estado)) {
           throw new ApolloError("El estado no es válido. Debe ser 'Pendiente', 'En revisión', 'Aceptada' o 'Rechazada'.", "INVALID_STATUS");
         }
 
-        // Validación de existencia en la base de datos
+        // Validation of existence in the database
         const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
         if (!profesionalExistente) {
           throw new ApolloError("El profesional no existe.", "PROFESIONAL_NOT_FOUND");
@@ -1276,7 +1292,7 @@ export const resolvers = {
           throw new ApolloError("La vacante no existe.", "VACANTE_NOT_FOUND");
         }
 
-        // Crear y guardar nueva aplicación
+        // Create and save new application
         const nuevaAplicacion = new Aplicacion({ id_aplicacion, id_profesional, id_vacante, fecha_aplicacion, estado });
         await nuevaAplicacion.save();
 
@@ -1292,18 +1308,18 @@ export const resolvers = {
     },
     updateAplicacion: async (parent, { id_aplicacion, id_profesional, id_vacante, fecha_aplicacion, estado }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_aplicacion) {
           throw new ApolloError("El campo id_aplicacion es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la aplicación
+        // Validation of application existence
         const aplicacionExistente = await Aplicacion.findOne({ id_aplicacion }).exec();
         if (!aplicacionExistente) {
           throw new ApolloError("La aplicación con el ID proporcionado no existe.", "APLICACION_NOT_FOUND");
         }
 
-        // Validación de datos proporcionados (si se proporcionan)
+        // Validation of provided data (if provided)
         const updateData = {};
 
         if (id_profesional) {
@@ -1323,7 +1339,7 @@ export const resolvers = {
         }
 
         if (fecha_aplicacion) {
-          // Validación de formato de fecha
+          // Date format validation
           const fecha = new Date(fecha_aplicacion);
           if (isNaN(fecha.getTime()) || fecha_aplicacion !== fecha.toISOString().split('T')[0]) {
             throw new ApolloError("El formato de la fecha de aplicación no es válido. Debe ser una fecha completa en formato YYYY-MM-DD.", "INVALID_DATE_FORMAT");
@@ -1339,7 +1355,7 @@ export const resolvers = {
           updateData.estado = estado;
         }
 
-        // Actualización de la aplicación
+        // Update the application
         const aplicacionActualizada = await Aplicacion.findOneAndUpdate({ id_aplicacion }, updateData, { new: true });
 
         if (!aplicacionActualizada) {
@@ -1362,18 +1378,18 @@ export const resolvers = {
     },
     deleteAplicacion: async (parent, { id_aplicacion }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_aplicacion) {
           throw new ApolloError("El campo id_aplicacion es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia de la aplicación
+        // Validation of application existence
         const aplicacionExistente = await Aplicacion.findOne({ id_aplicacion }).exec();
         if (!aplicacionExistente) {
           throw new ApolloError("La aplicación con el ID proporcionado no existe.", "APLICACION_NOT_FOUND");
         }
 
-        // Eliminar la aplicación
+        // Delete the application
         const aplicacionEliminada = await Aplicacion.findOneAndDelete({ id_aplicacion });
 
         if (!aplicacionEliminada) {
@@ -1396,17 +1412,17 @@ export const resolvers = {
     },
     addRegistroProfesionalProfesion: async (_, { id_registro_profesional_profesion, id_profesional, id_profesion }) => {
       try {
-        // Validación de campos requeridos
+        // Required field validation
         if (!id_registro_profesional_profesion || !id_profesional || !id_profesion) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
 
-        // Validación de tipos de datos
+        // Data type validation
         if (typeof id_registro_profesional_profesion !== 'number' || typeof id_profesional !== 'number' || typeof id_profesion !== 'number') {
           throw new ApolloError("Tipos de datos no válidos.", "INVALID_TYPE");
         }
 
-        // Validación de existencia en la base de datos
+        // Validation of existence in the database
         const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
         if (!profesionalExistente) {
           throw new ApolloError("El profesional no existe.", "PROFESIONAL_NOT_FOUND");
@@ -1417,7 +1433,7 @@ export const resolvers = {
           throw new ApolloError("La profesión no existe.", "PROFESION_NOT_FOUND");
         }
 
-        // Crear y guardar nuevo registro
+        // Create and save new record
         const nuevoRegistro = new RegistroProfesionalProfesion({ id_registro_profesional_profesion, id_profesional, id_profesion });
         await nuevoRegistro.save();
 
@@ -1433,18 +1449,18 @@ export const resolvers = {
     },
     updateRegistroProfesionalProfesion: async (parent, { id_registro_profesional_profesion, id_profesional, id_profesion }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_registro_profesional_profesion) {
           throw new ApolloError("El campo id_registro_profesional_profesion es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validación de existencia del registro
+        // Validation of record existence
         const registroExistente = await RegistroProfesionalProfesion.findOne({ id_registro_profesional_profesion }).exec();
         if (!registroExistente) {
           throw new ApolloError("El registro profesional-profesión con el ID proporcionado no existe.", "REGISTRO_NOT_FOUND");
         }
 
-        // Validar existencia del profesional si se proporciona
+        // Validate the existence of the professional if provided
         if (id_profesional) {
           const profesionalExistente = await Profesional.findOne({ id_profesional }).exec();
           if (!profesionalExistente) {
@@ -1452,7 +1468,7 @@ export const resolvers = {
           }
         }
 
-        // Validar existencia de la profesión si se proporciona
+        // Validate the existence of the profession if provided
         if (id_profesion) {
           const profesionExistente = await Profesion.findOne({ id_profesion }).exec();
           if (!profesionExistente) {
@@ -1460,7 +1476,7 @@ export const resolvers = {
           }
         }
 
-        // Actualización del registro
+        // Update the record
         const actualizarDatos = {};
         if (id_profesional) actualizarDatos.id_profesional = id_profesional;
         if (id_profesion) actualizarDatos.id_profesion = id_profesion;
@@ -1468,7 +1484,8 @@ export const resolvers = {
         const registroActualizado = await RegistroProfesionalProfesion.findOneAndUpdate(
           { id_registro_profesional_profesion },
           actualizarDatos,
-          { new: true } // Devuelve el documento actualizado
+          // Returns the updated document
+          { new: true }
         ).exec();
 
         if (!registroActualizado) {
@@ -1492,18 +1509,18 @@ export const resolvers = {
     ,
     deleteRegistroProfesionalProfesion: async (parent, { id_registro_profesional_profesion }) => {
       try {
-        // Validación de campo requerido
+        // Required field validation
         if (!id_registro_profesional_profesion) {
           throw new ApolloError("El campo id_registro_profesional_profesion es requerido.", "FIELD_REQUIRED");
         }
 
-        // Validar existencia del registro
+        // Validate the existence of the record
         const registroExistente = await RegistroProfesionalProfesion.findOne({ id_registro_profesional_profesion }).exec();
         if (!registroExistente) {
           throw new ApolloError("El registro profesional-profesión con el ID proporcionado no existe.", "REGISTRO_NOT_FOUND");
         }
 
-        // Eliminar el registro
+        // Delete the record
         const registroEliminado = await RegistroProfesionalProfesion.findOneAndDelete({ id_registro_profesional_profesion }).exec();
 
         if (!registroEliminado) {
