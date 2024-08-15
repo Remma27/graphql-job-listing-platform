@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+/*This file sets up a Mongoose schema and model for managing companies, including defining the structure, 
+relationships, and possible statuses of the applications.*/ 
+
 const EmpresaSchema = new mongoose.Schema({
     id_empresa: { type: Number, required: true, unique: true },
     nombre: { type: String, required: true, maxlength: 255 },

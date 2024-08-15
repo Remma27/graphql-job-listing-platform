@@ -23,10 +23,227 @@
         "telefono": "+1-555-5678",
         "email": "luis.martinez@example.com",
         "fecha_nacimiento": "1985-12-30",
-        "genero": "Femenino",
-        "areas": [
-            "Fontanería",
-            "Electricidad"
-        ]
-    }
-]
+        "genero": "Femenino"
+    },
+    
+        {
+            "id_profesional": 3,
+            "cedula": "112233445",
+            "nombre": "Carlos",
+            "apellido": "Fernández",
+            "direccion": "202 Oak St, Small Town, CA",
+            "telefono": "+1-555-6789",
+            "email": "carlos.fernandez@example.com",
+            "fecha_nacimiento": "1988-07-22",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 4,
+            "cedula": "223344556",
+            "nombre": "María",
+            "apellido": "González",
+            "direccion": "303 Maple St, Metropolis, NY",
+            "telefono": "+1-555-2345",
+            "email": "maria.gonzalez@example.com",
+            "fecha_nacimiento": "1992-03-17",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 5,
+            "cedula": "334455667",
+            "nombre": "Pedro",
+            "apellido": "Ramírez",
+            "direccion": "404 Pine St, Urbania, WA",
+            "telefono": "+1-555-3456",
+            "email": "pedro.ramirez@example.com",
+            "fecha_nacimiento": "1986-11-01",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 6,
+            "cedula": "445566778",
+            "nombre": "Lucía",
+            "apellido": "Torres",
+            "direccion": "505 Birch St, Greenfield, OR",
+            "telefono": "+1-555-4567",
+            "email": "lucia.torres@example.com",
+            "fecha_nacimiento": "1994-09-25",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 7,
+            "cedula": "556677889",
+            "nombre": "Juan",
+            "apellido": "López",
+            "direccion": "606 Cedar St, Riverside, IL",
+            "telefono": "+1-555-5678",
+            "email": "juan.lopez@example.com",
+            "fecha_nacimiento": "1990-06-10",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 8,
+            "cedula": "667788990",
+            "nombre": "Ana",
+            "apellido": "Martínez",
+            "direccion": "707 Willow St, Clearwater, TX",
+            "telefono": "+1-555-6789",
+            "email": "ana.martinez@example.com",
+            "fecha_nacimiento": "1987-12-05",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 9,
+            "cedula": "778899001",
+            "nombre": "Sofía",
+            "apellido": "Cruz",
+            "direccion": "808 Elm St, Springville, NV",
+            "telefono": "+1-555-7890",
+            "email": "sofia.cruz@example.com",
+            "fecha_nacimiento": "1991-08-14",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 10,
+            "cedula": "889900112",
+            "nombre": "Jorge",
+            "apellido": "Sánchez",
+            "direccion": "909 Maple St, Lakewood, CO",
+            "telefono": "+1-555-8901",
+            "email": "jorge.sanchez@example.com",
+            "fecha_nacimiento": "1989-04-19",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 11,
+            "cedula": "990011223",
+            "nombre": "Valeria",
+            "apellido": "Hernández",
+            "direccion": "1010 Oak St, Sun City, AZ",
+            "telefono": "+1-555-9012",
+            "email": "valeria.hernandez@example.com",
+            "fecha_nacimiento": "1993-10-07",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 12,
+            "cedula": "001122334",
+            "nombre": "Ricardo",
+            "apellido": "García",
+            "direccion": "1111 Pine St, Riverton, FL",
+            "telefono": "+1-555-0123",
+            "email": "ricardo.garcia@example.com",
+            "fecha_nacimiento": "1984-02-20",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 13,
+            "cedula": "112233245",
+            "nombre": "Elena",
+            "apellido": "Morales",
+            "direccion": "1212 Birch St, Coral Springs, NY",
+            "telefono": "+1-555-1234",
+            "email": "elena.morales@example.com",
+            "fecha_nacimiento": "1995-07-30",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 14,
+            "cedula": "223304556",
+            "nombre": "Ricardo",
+            "apellido": "Fernández",
+            "direccion": "1313 Cedar St, Harmony, TX",
+            "telefono": "+1-555-2345",
+            "email": "ricardo.fernandez@example.com",
+            "fecha_nacimiento": "1982-11-05",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 15,
+            "cedula": "334415667",
+            "nombre": "Gabriela",
+            "apellido": "Ruiz",
+            "direccion": "1414 Oak St, Meadowview, CA",
+            "telefono": "+1-555-3456",
+            "email": "gabriela.ruiz@example.com",
+            "fecha_nacimiento": "1990-01-12",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 16,
+            "cedula": "445566728",
+            "nombre": "Fernando",
+            "apellido": "Vásquez",
+            "direccion": "1515 Maple St, Willow Springs, CO",
+            "telefono": "+1-555-4567",
+            "email": "fernando.vasquez@example.com",
+            "fecha_nacimiento": "1986-09-23",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 17,
+            "cedula": "556677889",
+            "nombre": "Claudia",
+            "apellido": "Mendoza",
+            "direccion": "1616 Pine St, Crestview, FL",
+            "telefono": "+1-555-5678",
+            "email": "claudia.mendoza@example.com",
+            "fecha_nacimiento": "1992-06-19",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 18,
+            "cedula": "667788991",
+            "nombre": "Eduardo",
+            "apellido": "Ramos",
+            "direccion": "1717 Birch St, Evergreen, NV",
+            "telefono": "+1-555-6789",
+            "email": "eduardo.ramos@example.com",
+            "fecha_nacimiento": "1988-03-12",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 19,
+            "cedula": "778899001",
+            "nombre": "Paola",
+            "apellido": "Córdoba",
+            "direccion": "1818 Oak St, Summit, TX",
+            "telefono": "+1-555-7890",
+            "email": "paola.cordoba@example.com",
+            "fecha_nacimiento": "1991-05-08",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 20,
+            "cedula": "889901112",
+            "nombre": "Javier",
+            "apellido": "Suárez",
+            "direccion": "1919 Maple St, Ridgefield, CA",
+            "telefono": "+1-555-8901",
+            "email": "javier.suarez@example.com",
+            "fecha_nacimiento": "1989-12-15",
+            "genero": "Masculino"
+        },
+        {
+            "id_profesional": 21,
+            "cedula": "990041223",
+            "nombre": "Sabrina",
+            "apellido": "Vega",
+            "direccion": "2020 Pine St, Woodland, NY",
+            "telefono": "+1-555-9012",
+            "email": "sabrina.vega@example.com",
+            "fecha_nacimiento": "1993-11-25",
+            "genero": "Femenino"
+        },
+        {
+            "id_profesional": 22,
+            "cedula": "001102334",
+            "nombre": "Mauricio",
+            "apellido": "Bermúdez",
+            "direccion": "2121 Cedar St, Brookside, FL",
+            "telefono": "+1-555-0123",
+            "email": "mauricio.bermudez@example.com",
+            "fecha_nacimiento": "1987-04-10",
+            "genero": "Masculino"
+        }
+    ]
