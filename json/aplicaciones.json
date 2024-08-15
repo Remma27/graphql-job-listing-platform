@@ -13,158 +13,144 @@
         "fecha_aplicacion": "2024-08-02",
         "estado": "Reviewed"
     },
-
-        {
-            "id_aplicacion": 3,
-            "id_profesional": 3,
-            "id_vacante": 3,
-            "fecha_aplicacion": "2024-08-03",
-            "estado": "Interviewed"
-        },
-        {
-            "id_aplicacion": 4,
-            "id_profesional": 4,
-            "id_vacante": 4,
-            "fecha_aplicacion": "2024-07-15",
-            "estado": "Rejected"
-        },
-        {
-            "id_aplicacion": 5,
-            "id_profesional": 5,
-            "id_vacante": 5,
-            "fecha_aplicacion": "2024-06-20",
-            "estado": "Applied"
-        },
-        {
-            "id_aplicacion": 6,
-            "id_profesional": 6,
-            "id_vacante": 6,
-            "fecha_aplicacion": "2024-08-01",
-            "estado": "Reviewed"
-        },
-        {
-            "id_aplicacion": 7,
-            "id_profesional": 7,
-            "id_vacante": 7,
-            "fecha_aplicacion": "2024-08-04",
-            "estado": "Interviewed"
-        },
-        {
-            "id_aplicacion": 8,
-            "id_profesional": 8,
-            "id_vacante": 8,
-            "fecha_aplicacion": "2024-07-25",
-            "estado": "Rejected"
-        },
-        {
-            "id_aplicacion": 9,
-            "id_profesional": 9,
-            "id_vacante": 9,
-            "fecha_aplicacion": "2024-06-30",
-            "estado": "Applied"
-        },
-        {
-            "id_aplicacion": 10,
-            "id_profesional": 10,
-            "id_vacante": 10,
-            "fecha_aplicacion": "2024-08-06",
-            "estado": "Reviewed"
-        },
-        {
-            "id_aplicacion": 11,
-            "id_profesional": 11,
-            "id_vacante": 11,
-            "fecha_aplicacion": "2024-07-10",
-            "estado": "Interviewed"
-        },
-        {
-            "id_aplicacion": 12,
-            "id_profesional": 12,
-            "id_vacante": 12,
-            "fecha_aplicacion": "2024-08-02",
-            "estado": "Rejected"
-        },
-        {
-            "id_aplicacion": 13,
-            "id_profesional": 13,
-            "id_vacante": 13,
-            "fecha_aplicacion": "2024-07-22",
-            "estado": "Applied"
-        },
-        {
-            "id_aplicacion": 14,
-            "id_profesional": 14,
-            "id_vacante": 14,
-            "fecha_aplicacion": "2024-08-07",
-            "estado": "Reviewed"
-        },
-        {
-            "id_aplicacion": 15,
-            "id_profesional": 15,
-            "id_vacante": 15,
-            "fecha_aplicacion": "2024-07-18",
-            "estado": "Interviewed"
-        },
-        {
-            "id_aplicacion": 16,
-            "id_profesional": 16,
-            "id_vacante": 16,
-            "fecha_aplicacion": "2024-08-08",
-            "estado": "Rejected"
-        },
-        {
-            "id_aplicacion": 17,
-            "id_profesional": 17,
-            "id_vacante": 17,
-            "fecha_aplicacion": "2024-06-25",
-            "estado": "Applied"
-        },
-        {
-            "id_aplicacion": 18,
-            "id_profesional": 18,
-            "id_vacante": 18,
-            "fecha_aplicacion": "2024-08-09",
-            "estado": "Reviewed"
-        },
-        {
-            "id_aplicacion": 19,
-            "id_profesional": 19,
-            "id_vacante": 19,
-            "fecha_aplicacion": "2024-07-12",
-            "estado": "Interviewed"
-        },
-        {
-            "id_aplicacion": 20,
-            "id_profesional": 20,
-            "id_vacante": 20,
-            "fecha_aplicacion": "2024-08-10",
-            "estado": "Rejected"
-        },
-        {
-            "id_aplicacion": 21,
-            "id_profesional": 21,
-            "id_vacante": 21,
-            "fecha_aplicacion": "2024-07-28",
-            "estado": "Applied"
-        },
-        {
-            "id_aplicacion": 22,
-            "id_profesional": 22,
-            "id_vacante": 22,
-            "fecha_aplicacion": "2024-08-11",
-            "estado": "Reviewed"
-        }
-    ]
-    
-
-
-
-
-
-
-
-
-
-
-
-
+    {
+        "id_aplicacion": 3,
+        "id_profesional": 3,
+        "id_vacante": 3,
+        "fecha_aplicacion": "2024-08-03",
+        "estado": "Interviewed"
+    },
+    {
+        "id_aplicacion": 4,
+        "id_profesional": 4,
+        "id_vacante": 4,
+        "fecha_aplicacion": "2024-07-15",
+        "estado": "Rejected"
+    },
+    {
+        "id_aplicacion": 5,
+        "id_profesional": 5,
+        "id_vacante": 5,
+        "fecha_aplicacion": "2024-06-20",
+        "estado": "Applied"
+    },
+    {
+        "id_aplicacion": 6,
+        "id_profesional": 6,
+        "id_vacante": 6,
+        "fecha_aplicacion": "2024-08-01",
+        "estado": "Reviewed"
+    },
+    {
+        "id_aplicacion": 7,
+        "id_profesional": 7,
+        "id_vacante": 7,
+        "fecha_aplicacion": "2024-08-04",
+        "estado": "Interviewed"
+    },
+    {
+        "id_aplicacion": 8,
+        "id_profesional": 8,
+        "id_vacante": 8,
+        "fecha_aplicacion": "2024-07-25",
+        "estado": "Rejected"
+    },
+    {
+        "id_aplicacion": 9,
+        "id_profesional": 9,
+        "id_vacante": 9,
+        "fecha_aplicacion": "2024-06-30",
+        "estado": "Applied"
+    },
+    {
+        "id_aplicacion": 10,
+        "id_profesional": 10,
+        "id_vacante": 10,
+        "fecha_aplicacion": "2024-08-06",
+        "estado": "Reviewed"
+    },
+    {
+        "id_aplicacion": 11,
+        "id_profesional": 11,
+        "id_vacante": 11,
+        "fecha_aplicacion": "2024-07-10",
+        "estado": "Interviewed"
+    },
+    {
+        "id_aplicacion": 12,
+        "id_profesional": 12,
+        "id_vacante": 12,
+        "fecha_aplicacion": "2024-08-02",
+        "estado": "Rejected"
+    },
+    {
+        "id_aplicacion": 13,
+        "id_profesional": 13,
+        "id_vacante": 13,
+        "fecha_aplicacion": "2024-07-22",
+        "estado": "Applied"
+    },
+    {
+        "id_aplicacion": 14,
+        "id_profesional": 14,
+        "id_vacante": 14,
+        "fecha_aplicacion": "2024-08-07",
+        "estado": "Reviewed"
+    },
+    {
+        "id_aplicacion": 15,
+        "id_profesional": 15,
+        "id_vacante": 15,
+        "fecha_aplicacion": "2024-07-18",
+        "estado": "Interviewed"
+    },
+    {
+        "id_aplicacion": 16,
+        "id_profesional": 16,
+        "id_vacante": 16,
+        "fecha_aplicacion": "2024-08-08",
+        "estado": "Rejected"
+    },
+    {
+        "id_aplicacion": 17,
+        "id_profesional": 17,
+        "id_vacante": 17,
+        "fecha_aplicacion": "2024-06-25",
+        "estado": "Applied"
+    },
+    {
+        "id_aplicacion": 18,
+        "id_profesional": 18,
+        "id_vacante": 18,
+        "fecha_aplicacion": "2024-08-09",
+        "estado": "Reviewed"
+    },
+    {
+        "id_aplicacion": 19,
+        "id_profesional": 19,
+        "id_vacante": 19,
+        "fecha_aplicacion": "2024-07-12",
+        "estado": "Interviewed"
+    },
+    {
+        "id_aplicacion": 20,
+        "id_profesional": 20,
+        "id_vacante": 20,
+        "fecha_aplicacion": "2024-08-10",
+        "estado": "Rejected"
+    },
+    {
+        "id_aplicacion": 21,
+        "id_profesional": 21,
+        "id_vacante": 21,
+        "fecha_aplicacion": "2024-07-28",
+        "estado": "Applied"
+    },
+    {
+        "id_aplicacion": 22,
+        "id_profesional": 22,
+        "id_vacante": 22,
+        "fecha_aplicacion": "2024-08-11",
+        "estado": "Reviewed"
+    }
+]

@@ -26,8 +26,8 @@ scalar Date
     empresa: Empresa
     message: String
   }
- 
-  type Profesional {
+
+    type Profesional {
     id_profesional: Int
     cedula: String
     nombre: String
@@ -35,10 +35,11 @@ scalar Date
     direccion: String
     telefono: String
     email: String
-    fecha_nacimiento: Date
+    fecha_nacimiento: String  # Cambiado a String
     genero: String
     areas: [String!]
   }
+
   type UpdateProfesionalResponse {
     profesional: Profesional
     message: String
@@ -74,7 +75,7 @@ scalar Date
     expediente: Expediente
   }
 
- type DeleteResponse {
+type DeleteResponse {
     mensaje: String!
     expediente: Expediente
   } 
@@ -133,7 +134,7 @@ scalar Date
     nombre: String!
     puestos_ofertados: [String!]!
   }
- 
+
   type ProfesionalInfo {
     cedula: String!
     nombre: String!
