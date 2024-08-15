@@ -584,7 +584,7 @@ export const resolvers = {
     addProfesional: async (_, { id_profesional, cedula, nombre, apellido, direccion, telefono, email, fecha_nacimiento, genero, areas }) => {
       try {
         // Required field validations
-        if (!id_profesional || !cedula || !nombre || !apellido || !direccion || !telefono || !email || !fecha_nacimiento || !genero || !areas) {
+        if (!cedula || !nombre || !apellido || !direccion || !telefono || !email || !fecha_nacimiento || !genero || !areas) {
           throw new ApolloError("Todos los campos son requeridos.", "FIELD_REQUIRED");
         }
 
@@ -597,11 +597,9 @@ export const resolvers = {
         if (nombre.length > 100) {
           throw new ApolloError("El nombre no puede tener más de 100 caracteres.", "NAME_TOO_LONG");
         }
-
         if (apellido.length > 100) {
           throw new ApolloError("El apellido no puede tener más de 100 caracteres.", "APELLIDO_TOO_LONG");
         }
-
         if (direccion.length > 255) {
           throw new ApolloError("La dirección no puede tener más de 255 caracteres.", "DIRECCION_TOO_LONG");
         }
@@ -725,16 +723,18 @@ export const resolvers = {
         }
 
         if (fecha_nacimiento) {
+          // Ensure fecha_nacimiento is in the format YYYY-MM-DD
           const fechaNacimiento = new Date(fecha_nacimiento);
-          if (isNaN(fechaNacimiento.getTime())) {
-            throw new ApolloError("La fecha de nacimiento debe ser una fecha válida.", "INVALID_FECHA_NACIMIENTO");
+          if (isNaN(fechaNacimiento.getTime()) || fecha_nacimiento !== fechaNacimiento.toISOString().split('T')[0]) {
+            throw new ApolloError("La fecha de nacimiento debe ser una fecha válida en formato YYYY-MM-DD.", "INVALID_FECHA_NACIMIENTO");
           }
-          updateData.fecha_nacimiento = fechaNacimiento;
+          updateData.fecha_nacimiento = fecha_nacimiento;  // Ensure this is a string
         }
 
         if (genero) {
-          if (typeof genero !== 'string') {
-            throw new ApolloError("El género debe ser una cadena de texto.", "INVALID_GENERO");
+          const validGeneros = ["masculino", "femenino", "otro"];
+          if (typeof genero !== 'string' || !validGeneros.includes(genero.toLowerCase())) {
+            throw new ApolloError("El género debe ser una cadena de texto válida: masculino, femenino u otro.", "INVALID_GENERO");
           }
           updateData.genero = genero;
         }
@@ -751,7 +751,7 @@ export const resolvers = {
         }
 
         // Update the professional
-        const profesionalActualizado = await Profesional.findOneAndUpdate({ id_profesional }, updateData, { new: true });
+        const profesionalActualizado = await Profesional.findOneAndUpdate({ id_profesional }, updateData, { new: true }).exec();
 
         if (!profesionalActualizado) {
           throw new ApolloError("Error al actualizar el profesional.", "UPDATE_FAILED");

@@ -27,7 +27,7 @@ scalar Date
     message: String
   }
 
-    type Profesional {
+  type Profesional {
     id_profesional: Int
     cedula: String
     nombre: String
@@ -35,7 +35,7 @@ scalar Date
     direccion: String
     telefono: String
     email: String
-    fecha_nacimiento: String  # Cambiado a String
+    fecha_nacimiento: String 
     genero: String
     areas: [String!]
   }
