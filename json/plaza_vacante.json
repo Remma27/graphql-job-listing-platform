@@ -1,0 +1,178 @@
+[
+    {
+        "id_vacante": 1,
+        "id_empresa": 1,
+        "titulo_puesto": "Lead Software Engineer",
+        "descripcion": "Lead a team of engineers to develop cutting-edge software solutions.",
+        "fecha_publicacion": "2024-07-01",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 2,
+        "id_empresa": 2,
+        "titulo_puesto": "Data Scientist",
+        "descripcion": "Analyze and interpret complex data to help make data-driven decisions.",
+        "fecha_publicacion": "2024-08-01",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 3,
+        "id_empresa": 3,
+        "titulo_puesto": "Robotics Engineer",
+        "descripcion": "Design and develop robotics systems for various applications.",
+        "fecha_publicacion": "2024-08-05",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 4,
+        "id_empresa": 4,
+        "titulo_puesto": "Mechanical Engineer",
+        "descripcion": "Develop and improve mechanical systems and components.",
+        "fecha_publicacion": "2024-07-20",
+        "estado": "Closed"
+    },
+    {
+        "id_vacante": 5,
+        "id_empresa": 5,
+        "titulo_puesto": "Digital Marketing Manager",
+        "descripcion": "Create and manage digital marketing campaigns to boost online presence.",
+        "fecha_publicacion": "2024-07-15",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 6,
+        "id_empresa": 6,
+        "titulo_puesto": "Project Manager",
+        "descripcion": "Oversee construction projects from inception to completion.",
+        "fecha_publicacion": "2024-08-10",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 7,
+        "id_empresa": 7,
+        "titulo_puesto": "Art Director",
+        "descripcion": "Lead the creative direction for various art projects and campaigns.",
+        "fecha_publicacion": "2024-07-22",
+        "estado": "Closed"
+    },
+    {
+        "id_vacante": 8,
+        "id_empresa": 8,
+        "titulo_puesto": "Financial Analyst",
+        "descripcion": "Analyze financial data to guide investment decisions.",
+        "fecha_publicacion": "2024-08-03",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 9,
+        "id_empresa": 9,
+        "titulo_puesto": "Business Consultant",
+        "descripcion": "Provide expert advice to improve business operations and strategies.",
+        "fecha_publicacion": "2024-08-07",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 10,
+        "id_empresa": 10,
+        "titulo_puesto": "Global Business Manager",
+        "descripcion": "Manage and expand global business operations and partnerships.",
+        "fecha_publicacion": "2024-07-30",
+        "estado": "Closed"
+    },
+    {
+        "id_vacante": 11,
+        "id_empresa": 11,
+        "titulo_puesto": "IT Security Analyst",
+        "descripcion": "Protect the organization’s information systems from cyber threats.",
+        "fecha_publicacion": "2024-08-08",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 12,
+        "id_empresa": 12,
+        "titulo_puesto": "Healthcare Administrator",
+        "descripcion": "Manage healthcare facilities and ensure efficient operations.",
+        "fecha_publicacion": "2024-07-25",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 13,
+        "id_empresa": 13,
+        "titulo_puesto": "Environmental Consultant",
+        "descripcion": "Advise on environmental policies and sustainability practices.",
+        "fecha_publicacion": "2024-08-12",
+        "estado": "Closed"
+    },
+    {
+        "id_vacante": 14,
+        "id_empresa": 14,
+        "titulo_puesto": "Network Engineer",
+        "descripcion": "Design and maintain network infrastructure to ensure connectivity.",
+        "fecha_publicacion": "2024-07-18",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 15,
+        "id_empresa": 15,
+        "titulo_puesto": "Software Engineer",
+        "descripcion": "Develop and maintain software applications for various platforms.",
+        "fecha_publicacion": "2024-08-01",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 16,
+        "id_empresa": 16,
+        "titulo_puesto": "Logistics Coordinator",
+        "descripcion": "Manage and coordinate supply chain and logistics operations.",
+        "fecha_publicacion": "2024-07-28",
+        "estado": "Closed"
+    },
+    {
+        "id_vacante": 17,
+        "id_empresa": 17,
+        "titulo_puesto": "Biomedical Engineer",
+        "descripcion": "Develop and improve medical devices and equipment.",
+        "fecha_publicacion": "2024-08-06",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 18,
+        "id_empresa": 18,
+        "titulo_puesto": "Data Engineer",
+        "descripcion": "Build and maintain data processing systems and pipelines.",
+        "fecha_publicacion": "2024-07-29",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 19,
+        "id_empresa": 19,
+        "titulo_puesto": "Systems Engineer",
+        "descripcion": "Design and implement complex systems for various applications.",
+        "fecha_publicacion": "2024-08-09",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 20,
+        "id_empresa": 20,
+        "titulo_puesto": "Marketing Coordinator",
+        "descripcion": "Support and coordinate marketing campaigns and initiatives.",
+        "fecha_publicacion": "2024-07-27",
+        "estado": "Closed"
+    },
+    {
+        "id_vacante": 21,
+        "id_empresa": 21,
+        "titulo_puesto": "Process Engineer",
+        "descripcion": "Optimize and manage industrial processes and systems.",
+        "fecha_publicacion": "2024-08-04",
+        "estado": "Open"
+    },
+    {
+        "id_vacante": 22,
+        "id_empresa": 22,
+        "titulo_puesto": "Machine Learning Engineer",
+        "descripcion": "Develop and implement machine learning models and algorithms.",
+        "fecha_publicacion": "2024-08-11",
+        "estado": "Open"
+    }
+]

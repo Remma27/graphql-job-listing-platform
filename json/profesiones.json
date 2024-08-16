@@ -1,0 +1,74 @@
+[
+    {
+        "id_profesion": 1,
+        "nombre": "Software Engineer"
+    },
+    {
+        "id_profesion": 2,
+        "nombre": "Data Scientist"
+    },
+    {
+        "id_profesion": 3,
+        "nombre": "Mechanical Engineer"
+    },
+    {
+        "id_profesion": 4,
+        "nombre": "Financial Analyst"
+    },
+    {
+        "id_profesion": 5,
+        "nombre": "Marketing Manager"
+    },
+    {
+        "id_profesion": 6,
+        "nombre": "Project Manager"
+    },
+    {
+        "id_profesion": 7,
+        "nombre": "UX Designer"
+    },
+    {
+        "id_profesion": 8,
+        "nombre": "Product Manager"
+    },
+    {
+        "id_profesion": 9,
+        "nombre": "Network Administrator"
+    },
+    {
+        "id_profesion": 10,
+        "nombre": "Database Administrator"
+    },
+    {
+        "id_profesion": 11,
+        "nombre": "Systems Analyst"
+    },
+    {
+        "id_profesion": 12,
+        "nombre": "Civil Engineer"
+    },
+    {
+        "id_profesion": 13,
+        "nombre": "Environmental Scientist"
+    },
+    {
+        "id_profesion": 14,
+        "nombre": "Biomedical Engineer"
+    },
+    {
+        "id_profesion": 15,
+        "nombre": "Web Developer"
+    },
+    {
+        "id_profesion": 16,
+        "nombre": "Data Engineer"
+    },
+    {
+        "id_profesion": 17,
+        "nombre": "IT Support Specialist"
+    },
+    {
+        "id_profesion": 18,
+        "nombre": "Sales Manager"
+    }
+]

@@ -1,0 +1,178 @@
+[
+    {
+        "id_empresa": 1,
+        "nombre": "Tech Innovators",
+        "tipo": "Technology",
+        "direccion": "123 Tech Street, Silicon Valley, CA",
+        "telefono": "+1-123-456-7890",
+        "email": "contact@techinnovators.com"
+    },
+    {
+        "id_empresa": 2,
+        "nombre": "Health Corp",
+        "tipo": "Healthcare",
+        "direccion": "456 Health Ave, Med City, NY",
+        "telefono": "+1-987-654-3210",
+        "email": "info@healthcorp.com"
+    },
+    {
+        "id_empresa": 3,
+        "nombre": "Eco Solutions",
+        "tipo": "Environmental",
+        "direccion": "789 Green Road, Eco Town, TX",
+        "telefono": "+1-234-567-8901",
+        "email": "info@ecosolutions.com"
+    },
+    {
+        "id_empresa": 4,
+        "nombre": "FinTech Hub",
+        "tipo": "Finance",
+        "direccion": "101 Finance Blvd, Wall Street, NY",
+        "telefono": "+1-345-678-9012",
+        "email": "support@fintechhub.com"
+    },
+    {
+        "id_empresa": 5,
+        "nombre": "EduTech Labs",
+        "tipo": "Education",
+        "direccion": "202 Edu Lane, Knowledge City, CA",
+        "telefono": "+1-456-789-0123",
+        "email": "contact@edutechlabs.com"
+    },
+    {
+        "id_empresa": 6,
+        "nombre": "Auto Innovations",
+        "tipo": "Automotive",
+        "direccion": "303 Auto Park, Motor City, MI",
+        "telefono": "+1-567-890-1234",
+        "email": "info@autoinnovations.com"
+    },
+    {
+        "id_empresa": 7,
+        "nombre": "Retail World",
+        "tipo": "Retail",
+        "direccion": "404 Mall Street, Retail Town, FL",
+        "telefono": "+1-678-901-2345",
+        "email": "contact@retailworld.com"
+    },
+    {
+        "id_empresa": 8,
+        "nombre": "Travel Ventures",
+        "tipo": "Travel",
+        "direccion": "505 Journey Ave, Explore City, NV",
+        "telefono": "+1-789-012-3456",
+        "email": "info@travelventures.com"
+    },
+    {
+        "id_empresa": 9,
+        "nombre": "Media Giants",
+        "tipo": "Media",
+        "direccion": "606 Media Blvd, Entertainment City, CA",
+        "telefono": "+1-890-123-4567",
+        "email": "contact@mediagiants.com"
+    },
+    {
+        "id_empresa": 10,
+        "nombre": "Smart Home Tech",
+        "tipo": "Technology",
+        "direccion": "707 Smart Ave, Tech Valley, OR",
+        "telefono": "+1-901-234-5678",
+        "email": "info@smarthometech.com"
+    },
+    {
+        "id_empresa": 11,
+        "nombre": "Fitness Hub",
+        "tipo": "Health & Fitness",
+        "direccion": "808 Fitness St, Wellness City, CO",
+        "telefono": "+1-012-345-6789",
+        "email": "support@fitnesshub.com"
+    },
+    {
+        "id_empresa": 12,
+        "nombre": "Legal Solutions",
+        "tipo": "Legal",
+        "direccion": "909 Law Lane, Justice City, TX",
+        "telefono": "+1-123-456-7891",
+        "email": "contact@legalsolutions.com"
+    },
+    {
+        "id_empresa": 13,
+        "nombre": "AgriTech Innovations",
+        "tipo": "Agriculture",
+        "direccion": "010 Farm Road, Green Fields, IA",
+        "telefono": "+1-234-567-8902",
+        "email": "info@agritechinnovations.com"
+    },
+    {
+        "id_empresa": 14,
+        "nombre": "Energy Dynamics",
+        "tipo": "Energy",
+        "direccion": "121 Power Drive, Energy City, UT",
+        "telefono": "+1-345-678-9013",
+        "email": "contact@energydynamics.com"
+    },
+    {
+        "id_empresa": 15,
+        "nombre": "Blockchain Solutions",
+        "tipo": "Technology",
+        "direccion": "232 Crypto Ave, Blockchain City, NY",
+        "telefono": "+1-456-789-0124",
+        "email": "info@blockchainsolutions.com"
+    },
+    {
+        "id_empresa": 16,
+        "nombre": "Construction Co.",
+        "tipo": "Construction",
+        "direccion": "343 Build Street, Construct City, AZ",
+        "telefono": "+1-567-890-1235",
+        "email": "contact@constructionco.com"
+    },
+    {
+        "id_empresa": 17,
+        "nombre": "Artistry Studios",
+        "tipo": "Art & Design",
+        "direccion": "454 Art Lane, Creative City, WA",
+        "telefono": "+1-678-901-2346",
+        "email": "info@artistrystudios.com"
+    },
+    {
+        "id_empresa": 18,
+        "nombre": "Event Masters",
+        "tipo": "Events",
+        "direccion": "565 Event Ave, Celebration Town, VA",
+        "telefono": "+1-789-012-3457",
+        "email": "contact@eventmasters.com"
+    },
+    {
+        "id_empresa": 19,
+        "nombre": "Tech Pioneers",
+        "tipo": "Technology",
+        "direccion": "676 Innovation Blvd, Tech City, MA",
+        "telefono": "+1-890-123-4568",
+        "email": "info@techpioneers.com"
+    },
+    {
+        "id_empresa": 20,
+        "nombre": "Digital Marketing Pros",
+        "tipo": "Marketing",
+        "direccion": "787 Marketing St, Ad City, IL",
+        "telefono": "+1-901-234-5679",
+        "email": "contact@digitalmarketingpros.com"
+    },
+    {
+        "id_empresa": 21,
+        "nombre": "BioTech Innovations",
+        "tipo": "Biotechnology",
+        "direccion": "898 Bio Lane, Science Park, GA",
+        "telefono": "+1-012-345-6780",
+        "email": "info@biotechinnovations.com"
+    },
+    {
+        "id_empresa": 22,
+        "nombre": "Cyber Defense Systems",
+        "tipo": "Cybersecurity",
+        "direccion": "909 Cyber Blvd, Security City, NJ",
+        "telefono": "+1-123-456-7892",
+        "email": "contact@cyberdefensesystems.com"
+    }
+]
