@@ -1,5 +1,3 @@
-const atlasMongoURI = "mongodb+srv://emmanuelrsolano27:Emmaemmauwu2@cluster0.qujarzk.mongodb.net/jobs?retryWrites=true&w=majority";
-
 import mongoose from 'mongoose';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
@@ -7,6 +5,7 @@ import { typeDefs } from './data/schema_deb.js';
 import resolvers from './data/resolverMongo.js';
 
 // Connect to the MongoDB Atlas database
+const atlasMongoURI = "mongodb+srv://emmanuelrsolano27:Emmaemmauwu2@cluster0.qujarzk.mongodb.net/jobs?retryWrites=true&w=majority";
 mongoose.connect(atlasMongoURI)
     .then(() => console.log("DB connected"))
     .catch((error) => console.log("DB connection error:", error));
